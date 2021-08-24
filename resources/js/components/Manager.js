@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import  store from './store'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from "redux";
+import { ToastContainer } from 'react-toastify';
 import Alltasks from './tasks/container/allTasks';
 
 import { composeWithDevTools } from "redux-devtools-extension";
@@ -22,6 +22,7 @@ function Manager() {
                         <div className="card-body">
                             <Alltasks />
                             <AddTask />
+                            <ToastContainer />
                         </div>
                         
                     </div>
