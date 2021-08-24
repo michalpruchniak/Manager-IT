@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 
-import { getAllTasks } from './operations';
+import { getAllTasks } from '../operations';
 
 const TasksContainer = ({ tasks, getAllTasks }) => {
     useEffect(() => { getAllTasks() }, [])

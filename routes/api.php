@@ -15,7 +15,8 @@ use App\Http\Controllers\TasksController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::get('/user', function (Request $request) {
     return $request->user();
 });
-Route::middleware('auth:api')->get('/taks/all-tasks', [TasksController::class, 'showAllTasks']);
+Route::get('/taks/all-tasks', [TasksController::class, 'showAllTasks']);
+Route::post('/taks/store-task', [TasksController::class, 'storeTask']);

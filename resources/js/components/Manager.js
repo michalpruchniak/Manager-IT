@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 // import  store from './store'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from "redux";
-import Alltasks from './tasks/allTasks';
+import Alltasks from './tasks/container/allTasks';
 
 import { composeWithDevTools } from "redux-devtools-extension";
 import allReducers from "./reducers";
 import thunk from 'redux-thunk'
+import AddTask from './tasks/container/addTask';
 
 
 const store = createStore(allReducers, composeWithDevTools(applyMiddleware(thunk)))
@@ -20,6 +21,7 @@ function Manager() {
                         <div className="card-header">Example Component</div>
                         <div className="card-body">
                             <Alltasks />
+                            <AddTask />
                         </div>
                         
                     </div>
