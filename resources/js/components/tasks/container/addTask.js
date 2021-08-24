@@ -1,31 +1,20 @@
 import React from 'react'
 import actions from '../actions';
 import { connect } from 'react-redux'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import axiosConfig from '../../../config/axios';
+import ToastConfig from '../../../config/toast';
 
 const addTask = (props) => {
     const taskInput = React.createRef();
     const storeTask = (event) => {
         event.preventDefault();
         try {
-            axios.post('http://localhost:8000/api/taks/store-task', {
+            axiosConfig.post('api/taks/store-task', {
                 name: taskInput.current.value
-            }, {
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
             }).then((res) => {
                 props.add(res.data)
-                toast.success('Task został dodany poprawnie', {
-                    position: "bottom-left",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined
-                });
+                ToastConfig('success', 'Task został dodany');
+                
                 taskInput.current.value = '';
             })
         } catch(err) {
