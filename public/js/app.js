@@ -2204,15 +2204,7 @@ var fetchTasks = /*#__PURE__*/function () {
   return function fetchTasks() {
     return _ref.apply(this, arguments);
   };
-}(); // export const storeTask = (name) => {
-//     const response = axios.post('http://localhost:8000/api/taks/store-task', {
-//         name: name
-//     }).then(() => {
-//         console.log(res)
-//     })
-//     return response;
-// }
-
+}();
 
 var getAllTasks = function getAllTasks() {
   return /*#__PURE__*/function () {
@@ -2258,6 +2250,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _config_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../config/types */ "./resources/js/config/types.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2276,6 +2269,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+
 var initialTasks = {
   name: 'tasks',
   list: []
@@ -2286,7 +2280,7 @@ function tasks() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'ADD_TASK':
+    case _config_types__WEBPACK_IMPORTED_MODULE_0__.default.add_task:
       return _objectSpread(_objectSpread({}, state), {}, {
         list: [].concat(_toConsumableArray(state.list), [action.task])
       });
@@ -2352,6 +2346,23 @@ var ToastConfig = function ToastConfig(name) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ToastConfig);
+
+/***/ }),
+
+/***/ "./resources/js/config/types.js":
+/*!**************************************!*\
+  !*** ./resources/js/config/types.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  add_task: 'ADD_TASK'
+});
 
 /***/ }),
 
