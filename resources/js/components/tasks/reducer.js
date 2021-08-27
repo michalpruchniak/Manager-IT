@@ -11,8 +11,18 @@ function tasks(state = initialTasks, action) {
                 ...state,
                 list: [...state.list, action.task]
             }
+
+        case 'COMPLETED_TASK':
+            return {
+                ...state,
+                list: state.list.map(todo =>
+                    (todo.id === action.id)
+                        ? { ...todo, completed: !todo.completed }
+                        : todo
+                )
+            }
         default:
             return state
-    }
+    } 
 }
 export default tasks;

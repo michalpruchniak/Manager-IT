@@ -12,3 +12,4 @@ export const getAllTasks = () =>
         const tasks = await fetchTasks()
         tasks.map(task => dispatch(actions.addTask(task)))
     }
+

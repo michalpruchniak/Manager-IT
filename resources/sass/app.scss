@@ -7,3 +7,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+.completeTask {
+    color: red;
+}
+.activeTask {
+    color: blue;
+}

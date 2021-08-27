@@ -2024,8 +2024,16 @@ var addTask = function addTask(task) {
   };
 };
 
+var completedTask = function completedTask(id) {
+  return {
+    type: 'COMPLETED_TASK',
+    id: id
+  };
+};
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  addTask: addTask
+  addTask: addTask,
+  completedTask: completedTask
 });
 
 /***/ }),
@@ -2110,8 +2118,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../operations */ "./resources/js/components/tasks/operations.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./resources/js/components/tasks/actions.js");
+/* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../operations */ "./resources/js/components/tasks/operations.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
 
 
 
@@ -2119,14 +2130,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var TasksContainer = function TasksContainer(_ref) {
   var tasks = _ref.tasks,
-      getAllTasks = _ref.getAllTasks;
+      getAllTasks = _ref.getAllTasks,
+      markAsCompleted = _ref.markAsCompleted;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getAllTasks();
   }, []);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("ul", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
     children: tasks.list.map(function (task) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-        children: task.name
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
+        className: task.completed ? 'activeTask' : 'completeTask',
+        onClick: function onClick() {
+          return markAsCompleted(task.id);
+        },
+        children: [task.name, " (", task.completed, ")"]
       }, task.id);
     })
   });
@@ -2141,7 +2157,10 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     getAllTasks: function getAllTasks() {
-      return dispatch((0,_operations__WEBPACK_IMPORTED_MODULE_2__.getAllTasks)());
+      return dispatch((0,_operations__WEBPACK_IMPORTED_MODULE_3__.getAllTasks)());
+    },
+    markAsCompleted: function markAsCompleted(id) {
+      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_2__.default.completedTask(id));
     }
   };
 };
@@ -2283,6 +2302,15 @@ function tasks() {
     case _config_types__WEBPACK_IMPORTED_MODULE_0__.default.add_task:
       return _objectSpread(_objectSpread({}, state), {}, {
         list: [].concat(_toConsumableArray(state.list), [action.task])
+      });
+
+    case 'COMPLETED_TASK':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        list: state.list.map(function (todo) {
+          return todo.id === action.id ? _objectSpread(_objectSpread({}, todo), {}, {
+            completed: !todo.completed
+          }) : todo;
+        })
       });
 
     default:
