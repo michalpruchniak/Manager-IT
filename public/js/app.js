@@ -2131,18 +2131,24 @@ __webpack_require__.r(__webpack_exports__);
 var TasksContainer = function TasksContainer(_ref) {
   var tasks = _ref.tasks,
       getAllTasks = _ref.getAllTasks,
-      markAsCompleted = _ref.markAsCompleted;
+      toggleMarksAsCompleted = _ref.toggleMarksAsCompleted;
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     getAllTasks();
   }, []);
+
+  var markAsCompleted = function markAsCompleted(id) {
+    toggleMarksAsCompleted(id);
+    (0,_operations__WEBPACK_IMPORTED_MODULE_3__.toggleCompleted)(id);
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("ul", {
     children: tasks.list.map(function (task) {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("li", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("li", {
         className: task.completed ? 'activeTask' : 'completeTask',
         onClick: function onClick() {
           return markAsCompleted(task.id);
         },
-        children: [task.name, " (", task.completed, ")"]
+        children: task.name
       }, task.id);
     })
   });
@@ -2159,7 +2165,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     getAllTasks: function getAllTasks() {
       return dispatch((0,_operations__WEBPACK_IMPORTED_MODULE_3__.getAllTasks)());
     },
-    markAsCompleted: function markAsCompleted(id) {
+    toggleMarksAsCompleted: function toggleMarksAsCompleted(id) {
       return dispatch(_actions__WEBPACK_IMPORTED_MODULE_2__.default.completedTask(id));
     }
   };
@@ -2178,6 +2184,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "toggleCompleted": () => (/* binding */ toggleCompleted),
 /* harmony export */   "getAllTasks": () => (/* binding */ getAllTasks)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -2225,33 +2232,66 @@ var fetchTasks = /*#__PURE__*/function () {
   };
 }();
 
+var toggleCompleted = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
+    var response, json;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return fetch('http://localhost:8000/api/taks/toggle-completed-task/' + id, {
+              method: 'GET'
+            });
+
+          case 2:
+            response = _context2.sent;
+            _context2.next = 5;
+            return response.json();
+
+          case 5:
+            json = _context2.sent;
+            return _context2.abrupt("return", json);
+
+          case 7:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function toggleCompleted(_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
 var getAllTasks = function getAllTasks() {
   return /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(dispatch) {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(dispatch) {
       var tasks;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              _context2.next = 2;
+              _context3.next = 2;
               return fetchTasks();
 
             case 2:
-              tasks = _context2.sent;
+              tasks = _context3.sent;
               tasks.map(function (task) {
                 return dispatch(_actions__WEBPACK_IMPORTED_MODULE_1__.default.addTask(task));
               });
 
             case 4:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }));
 
-    return function (_x) {
-      return _ref2.apply(this, arguments);
+    return function (_x2) {
+      return _ref3.apply(this, arguments);
     };
   }();
 };

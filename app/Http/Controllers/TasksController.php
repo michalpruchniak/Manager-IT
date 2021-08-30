@@ -19,6 +19,12 @@ class TasksController extends Controller
         $task->save();
         return $task;
     }
+    public function toggleCompletedTask($id, Request $request){
+        $tasks = Tasks::find($id);
+        $tasks->completed = !$tasks->completed;
+        $tasks->save();
+        return $tasks;
+    }
 
 
     public function getToken(){

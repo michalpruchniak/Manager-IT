@@ -6,6 +6,12 @@ const fetchTasks  = async () => {
 
     return json
 }
+export const toggleCompleted  = async (id) => {
+    const response = await fetch('http://localhost:8000/api/taks/toggle-completed-task/' + id, { method: 'GET' })
+    const json = await response.json()
+
+    return json
+}
 
 export const getAllTasks = () =>
     async (dispatch) => {
