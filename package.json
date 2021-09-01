@@ -27,6 +27,8 @@
     "dependencies": {
         "formik": "^2.2.9",
         "react-cookie": "^4.1.1",
+        "react-hook-form": "^7.14.2",
+        "react-hooks-form": "^2.0.1",
         "react-redux": "^7.2.4",
         "react-toastify": "^7.0.4",
         "redux": "^4.1.1",

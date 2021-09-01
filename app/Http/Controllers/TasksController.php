@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use App\Models\Tasks;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TasksController extends Controller
 {
@@ -16,6 +17,7 @@ class TasksController extends Controller
     public function storeTask(Request $request){
         $task = new Tasks;
         $task->name = $request->name;
+        $tasks->user_name = Auth::user()->id;
         $task->save();
         return $task;
     }
@@ -33,5 +35,9 @@ class TasksController extends Controller
         Cookie::queue("Authorization", $token);
 
         return $token;
+    }
+
+    public function auth(){
+        dd(Auth::id());
     }
 }

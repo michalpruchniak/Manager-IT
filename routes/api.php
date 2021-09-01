@@ -20,4 +20,5 @@ Route::get('/user', function (Request $request) {
 });
 Route::get('/taks/all-tasks', [TasksController::class, 'showAllTasks']);
 Route::post('/taks/store-task', [TasksController::class, 'storeTask']);
-Route::get('/taks/toggle-completed-task/{id}', [TasksController::class, 'toggleCompletedTask']);
+Route::middleware('auth:sanctum')->get('/taks/toggle-completed-task/{id}', [TasksController::class, 'toggleCompletedTask']);
+Route::get('/auth', [TasksController::class, 'auth']);
