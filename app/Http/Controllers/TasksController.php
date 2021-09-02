@@ -17,7 +17,7 @@ class TasksController extends Controller
     public function storeTask(Request $request){
         $task = new Tasks;
         $task->name = $request->name;
-        $tasks->user_name = Auth::user()->id;
+        $task->user_id = $request->user()->id;
         $task->save();
         return $task;
     }

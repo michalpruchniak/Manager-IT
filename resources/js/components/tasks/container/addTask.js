@@ -10,7 +10,8 @@ const addTask = (props) => {
         event.preventDefault();
         try {
             axiosConfig.post('api/taks/store-task', {
-                name: taskInput.current.value
+                name: taskInput.current.value,
+  
             }).then((res) => {
                 props.add(res.data)
                 ToastConfig('success', 'Task został dodany');

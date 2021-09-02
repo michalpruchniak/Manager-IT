@@ -18,7 +18,15 @@ use App\Http\Controllers\TasksController;
 Route::get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/taks/all-tasks', [TasksController::class, 'showAllTasks']);
-Route::post('/taks/store-task', [TasksController::class, 'storeTask']);
-Route::middleware('auth:sanctum')->get('/taks/toggle-completed-task/{id}', [TasksController::class, 'toggleCompletedTask']);
 Route::get('/auth', [TasksController::class, 'auth']);
+
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::get('/taks/all-tasks', [TasksController::class, 'showAllTasks']);
+    Route::post('/taks/store-task', [TasksController::class, 'storeTask']);
+    Route::get('/taks/toggle-completed-task/{id}', [TasksController::class, 'toggleCompletedTask']);
+
+     Route::get('/profile/me', function (Request $request) {
+        return $request->user();
+    });
+});
+

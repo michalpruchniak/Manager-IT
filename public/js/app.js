@@ -2384,7 +2384,10 @@ var fetchTasks = /*#__PURE__*/function () {
           case 0:
             _context.next = 2;
             return fetch('http://localhost:8000/api/taks/all-tasks', {
-              method: 'GET'
+              method: 'GET',
+              headers: {
+                'Authorization': window.localStorage.getItem('Authorization')
+              }
             });
 
           case 2:
@@ -2559,7 +2562,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (axios__WEBPACK_IMPORTED_MODULE_0___default().create({
   baseURL: 'http://localhost:8000/',
   headers: {
-    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+    'Authorization': window.localStorage.getItem('Authorization')
   }
 }));
 

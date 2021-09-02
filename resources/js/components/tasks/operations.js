@@ -1,7 +1,13 @@
 import actions from "./actions";
 
 const fetchTasks  = async () => {
-    const response = await fetch('http://localhost:8000/api/taks/all-tasks', { method: 'GET' })
+    const response = await fetch('http://localhost:8000/api/taks/all-tasks', { 
+        method: 'GET',
+        headers: {
+            'Authorization': window.localStorage.getItem('Authorization')
+        }
+
+     })
     const json = await response.json()
 
     return json
