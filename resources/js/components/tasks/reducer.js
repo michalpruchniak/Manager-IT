@@ -16,7 +16,7 @@ function tasks(state = initialTasks, action) {
             return {
                 ...state,
                 list: state.list.map(todo =>
-                    (todo.id === action.id)
+                    (todo.id === action.id )
                         ? { ...todo, completed: !todo.completed }
                         : todo
                 )

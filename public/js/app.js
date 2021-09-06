@@ -2288,12 +2288,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./resources/js/components/tasks/actions.js");
-/* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../operations */ "./resources/js/components/tasks/operations.js");
-/* harmony import */ var _auth_login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../auth/login */ "./resources/js/components/auth/login.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions */ "./resources/js/components/tasks/actions.js");
+/* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operations */ "./resources/js/components/tasks/operations.js");
+/* harmony import */ var _auth_login__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../auth/login */ "./resources/js/components/auth/login.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -2307,19 +2315,44 @@ var TasksContainer = function TasksContainer(_ref) {
   var tasks = _ref.tasks,
       getAllTasks = _ref.getAllTasks,
       toggleMarksAsCompleted = _ref.toggleMarksAsCompleted;
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     getAllTasks();
   }, []);
 
-  var markAsCompleted = function markAsCompleted(id) {
-    toggleMarksAsCompleted(id);
-    (0,_operations__WEBPACK_IMPORTED_MODULE_3__.toggleCompleted)(id);
-  };
+  var markAsCompleted = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(id) {
+      var res;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return (0,_operations__WEBPACK_IMPORTED_MODULE_4__.toggleCompleted)(id);
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_auth_login__WEBPACK_IMPORTED_MODULE_4__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
+            case 2:
+              res = _context.sent;
+
+              if (res == 1) {
+                toggleMarksAsCompleted(id);
+              }
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function markAsCompleted(_x) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_auth_login__WEBPACK_IMPORTED_MODULE_5__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("ul", {
       children: tasks.list.map(function (task) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("li", {
           className: task.completed ? 'activeTask' : 'completeTask',
           onClick: function onClick() {
             return markAsCompleted(task.id);
@@ -2340,15 +2373,15 @@ var mapStateToProps = function mapStateToProps(state) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     getAllTasks: function getAllTasks() {
-      return dispatch((0,_operations__WEBPACK_IMPORTED_MODULE_3__.getAllTasks)());
+      return dispatch((0,_operations__WEBPACK_IMPORTED_MODULE_4__.getAllTasks)());
     },
     toggleMarksAsCompleted: function toggleMarksAsCompleted(id) {
-      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_2__.default.completedTask(id));
+      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_3__.default.completedTask(id));
     }
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(TasksContainer));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, mapDispatchToProps)(TasksContainer));
 
 /***/ }),
 
@@ -2367,11 +2400,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./resources/js/components/tasks/actions.js");
+/* harmony import */ var _config_axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../config/axios */ "./resources/js/config/axios.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -2412,69 +2447,40 @@ var fetchTasks = /*#__PURE__*/function () {
   };
 }();
 
-var toggleCompleted = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
-    var response, json;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.next = 2;
-            return fetch('http://localhost:8000/api/taks/toggle-completed-task/' + id, {
-              method: 'GET',
-              headers: {
-                'Authorization': window.localStorage.getItem('Authorization')
-              }
-            });
-
-          case 2:
-            response = _context2.sent;
-            _context2.next = 5;
-            return response.json();
-
-          case 5:
-            json = _context2.sent;
-            return _context2.abrupt("return", json);
-
-          case 7:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-
-  return function toggleCompleted(_x) {
-    return _ref2.apply(this, arguments);
-  };
-}();
+var toggleCompleted = function toggleCompleted(id) {
+  return _config_axios__WEBPACK_IMPORTED_MODULE_2__.default.get('api/taks/toggle-completed-task/' + id).then(function (res) {
+    return res.data;
+  })["catch"](function (error) {
+    return error;
+  });
+};
 var getAllTasks = function getAllTasks() {
   return /*#__PURE__*/function () {
-    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(dispatch) {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(dispatch) {
       var tasks;
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
-              _context3.next = 2;
+              _context2.next = 2;
               return fetchTasks();
 
             case 2:
-              tasks = _context3.sent;
+              tasks = _context2.sent;
               tasks.map(function (task) {
                 return dispatch(_actions__WEBPACK_IMPORTED_MODULE_1__.default.addTask(task));
               });
 
             case 4:
             case "end":
-              return _context3.stop();
+              return _context2.stop();
           }
         }
-      }, _callee3);
+      }, _callee2);
     }));
 
-    return function (_x2) {
-      return _ref3.apply(this, arguments);
+    return function (_x) {
+      return _ref2.apply(this, arguments);
     };
   }();
 };

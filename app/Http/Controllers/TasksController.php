@@ -23,9 +23,18 @@ class TasksController extends Controller
     }
     public function toggleCompletedTask($id, Request $request){
         $tasks = Tasks::find($id);
-        $tasks->completed = !$tasks->completed;
-        $tasks->save();
-        return $tasks;
+        if(
+            $tasks->user_id === $request->user()->id
+            // $request->user()->admin === true ||
+            // $request->user()->moderator === true
+            ) {
+                $tasks->completed = !$tasks->completed;
+                $tasks->save();
+                return 1;
+
+            } else {
+                return 0;
+            }
     }
 
 

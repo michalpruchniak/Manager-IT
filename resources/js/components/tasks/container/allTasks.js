@@ -9,9 +9,12 @@ import { getAllTasks } from '../operations';
 
 const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted }) => {
     useEffect(() => { getAllTasks() }, [])
-    const markAsCompleted = (id) => {
-        toggleMarksAsCompleted(id);
-        toggleCompleted(id);
+    const markAsCompleted = async (id) => {
+        const res = await toggleCompleted(id)
+        if (res == 1){
+            toggleMarksAsCompleted(id);
+        }
+       
 
     }
     return( 
