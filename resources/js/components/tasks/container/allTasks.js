@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import actions from '../actions';
 import { toggleCompleted  } from '../operations';
 import Login from '../../auth/login';
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 
 import { getAllTasks } from '../operations';
@@ -13,6 +15,25 @@ const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted }) => {
         const res = await toggleCompleted(id)
         if (res == 1){
             toggleMarksAsCompleted(id);
+            toast.success('Zmieniono status tasku', {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        } else {
+            toast.error('Nie masz uprawnień do zmiany statusu tego tasku', {
+                position: "bottom-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
         }
        
 
@@ -20,7 +41,7 @@ const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted }) => {
     return( 
     <React.Fragment>
     <Login />
-    <ul>
+    <ul className="tasks">
         {tasks.list.map(task =>
             <li key={task.id} className={task.completed ? 'activeTask' : 'completeTask'}
              onClick={() => markAsCompleted(task.id)}>{task.name}</li>

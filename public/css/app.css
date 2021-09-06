@@ -10002,10 +10002,28 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.tasks{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.tasks > li {
+  padding: 10px;
+  cursor: pointer;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  font-size: 15px;
+}
 .completeTask {
-  color: red;
+    background-color: #4d4d4d;
+  border: 2px solid #3f3f3f;
+  font-weight: bold;
+  color: #d6d6d6;
 }
 
 .activeTask {
-  color: blue;
+  background-color: #29ce60;
+  border: 2px solid #ffffff;
+  font-weight: bold;
+
 }

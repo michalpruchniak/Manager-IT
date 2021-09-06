@@ -2,7 +2,8 @@ import React from 'react'
 import actions from '../actions';
 import { connect } from 'react-redux'
 import axiosConfig from '../../../config/axios';
-import ToastConfig from '../../../config/toast';
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const addTask = (props) => {
     const taskInput = React.createRef();
@@ -14,7 +15,15 @@ const addTask = (props) => {
   
             }).then((res) => {
                 props.add(res.data)
-                ToastConfig('success', 'Task został dodany');
+                toast.success('Task został dodany prawiodłowo', {
+                    position: "bottom-left",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
                 
                 taskInput.current.value = '';
             })
