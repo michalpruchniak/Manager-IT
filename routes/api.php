@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TasksController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/auth', [TasksController::class, 'auth']);
+
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::get('/taks/all-tasks', [TasksController::class, 'showAllTasks']);
+    Route::post('/taks/store-task', [TasksController::class, 'storeTask']);
+    Route::get('/taks/toggle-completed-task/{id}', [TasksController::class, 'toggleCompletedTask']);
+
+     Route::get('/userdetails', function (Request $request) {
+        return $request->user();
+    });
 });
