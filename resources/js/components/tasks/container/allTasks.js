@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import actions from '../actions';
 import { toggleCompleted  } from '../operations';
-import Login from '../../auth/login';
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -40,7 +39,6 @@ const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted }) => {
     }
     return( 
     <React.Fragment>
-    <Login />
     <ul className="tasks">
         {tasks.list.map(task =>
             <li key={task.id} className={task.completed ? 'activeTask' : 'completeTask'}

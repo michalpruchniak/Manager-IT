@@ -1,18 +1,34 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { url } from '../default'
 import Message from '../include/messages'
+import {
+    HashRouter as Router,
+    Switch,
+    Route,
+    Redirect
+} from "react-router-dom";
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [logged, setLogged] = useState("none")
+    useEffect(() => {
+            <Router>
+                <Redirect to="/all-tasks" />
+            </Router>
+        
+    })
     const onSubmit = data => {
         axios.get(url + "/sanctum/csrf-cookie").then(() => {
             axios.post(url + '/api/login', data)
                 .then(res => {
                     window.localStorage.setItem('Authorization', res.data.token_type + ' ' + res.data.access_token);
+
+                    window.location.href = 'home/#/all-tasks';
+
+            console.log('Udało się. Hurra!');
                 })
                 .catch(error => {
                     if (error.response.status == 401) {

@@ -6,23 +6,24 @@ import { ToastContainer } from 'react-toastify';
 import Alltasks from './tasks/container/allTasks';
 
 import { composeWithDevTools } from "redux-devtools-extension";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+
 import allReducers from "./reducers";
 import thunk from 'redux-thunk'
 import AddTask from './tasks/container/addTask';
-import Login from './auth/login';
 import authProvider from './include/authProvider';
-import {
-    HashRouter as Router,
-    Switch,
-    Route,
-    Redirect
-} from "react-router-dom";
+
 
 const store = createStore(allReducers, composeWithDevTools(applyMiddleware(thunk)))
 function Manager() {
-    useEffect(() => {
-        authProvider();
-    })
+useEffect(() => {
+    authProvider();
+})
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -30,20 +31,8 @@ function Manager() {
                     <div className="card">
                         <div className="card-header">Example Component</div>
                         <div className="card-body">
-                            <Router>
-                                <Switch>
-                                    <Route path="/all-tasks">
-                                        <Alltasks />
-                                    </Route>
-                                    <Route path="/login">
-                                        <Login />
-                                    </Route>
-                                    <Route path="/">
-                                        <Redirect to="/all-tasks" />
-                                    </Route>
-
-                                </Switch>
-                            </Router>
+                            <Alltasks />
+                            <AddTask />
                             <ToastContainer />
                         </div>
 
