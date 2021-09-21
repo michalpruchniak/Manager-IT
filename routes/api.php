@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\AuthController;
+
 
 
 /*
@@ -17,6 +19,7 @@ use App\Http\Controllers\TasksController;
 */
 
 Route::get('/auth', [TasksController::class, 'auth']);
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/taks/all-tasks', [TasksController::class, 'showAllTasks']);

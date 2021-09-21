@@ -1,5 +1,7 @@
-const addTask = task => ({ type: 'ADD_TASK', task })
-const completedTask = id => ({ type: 'COMPLETED_TASK', id })
+import types from "../../config/types"
+
+const addTask = task => ({ type: types.add_task, task })
+const completedTask = id => ({ type: types.completed_task, id })
 
 export default {
     addTask,

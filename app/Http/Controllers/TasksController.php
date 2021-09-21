@@ -38,13 +38,13 @@ class TasksController extends Controller
     }
 
 
-    public function getToken(){
-        $user = User::first();
-        $token = $user->createToken('Authrization', ['server:update'])->plainTextToken;
-        Cookie::queue("Authorization", $token);
+    // public function getToken(){
+    //     $user = User::first();
+    //     $token = $user->createToken('Authrization', ['server:update'])->plainTextToken;
+    //     Cookie::queue("Authorization", $token);
 
-        return $token;
-    }
+    //     return $token;
+    // }
 
     public function auth(){
         dd(Auth::id());

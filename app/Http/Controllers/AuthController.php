@@ -36,20 +36,22 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-    if (!Auth::attempt($request->only('email', 'password'))) {
-    return response()->json([
-    'message' => 'Invalid login details'
-               ], 401);
-           }
-    
-    $user = User::where('email', $request['email'])->firstOrFail();
-    
-    $token = $user->createToken('auth_token')->plainTextToken;
-    
-    return response()->json([
-               'access_token' => $token,
-               'token_type' => 'Bearer',
-    ]);
+        if(!Auth::attempt($request->only('email', 'password'))) {
+            return \response([
+                'error' => 'Invalid Credentials'
+            ]);
+        }
+
+            $user = Auth::user();
+
+            $token = $user->createToken('token')->plainTextToken;
+            $cookie = cookie('jwt', $token, 60*24);
+
+            return \response([
+                'jwt' => $token
+            ])->withCookie($cookie);
+
+        
     }
 
     public function logout(Request $request)

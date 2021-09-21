@@ -4,9 +4,11 @@ import actions from '../actions';
 import { toggleCompleted  } from '../operations';
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import AddTask from './addTask';
 
 
 import { getAllTasks } from '../operations';
+import AllUsers from '../../users/container/allUsers';
 
 const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted }) => {
     useEffect(() => { getAllTasks() }, [])
@@ -41,10 +43,12 @@ const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted }) => {
     <React.Fragment>
     <ul className="tasks">
         {tasks.list.map(task =>
-            <li key={task.id} className={task.completed ? 'activeTask' : 'completeTask'}
+            <li key={task.id} className={!task.completed ? 'activeTask' : 'completeTask'}
              onClick={() => markAsCompleted(task.id)}>{task.name}</li>
         )}
     </ul>
+    <AddTask />
+    <AllUsers />
     </React.Fragment>
     )
 }

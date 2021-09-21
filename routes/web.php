@@ -26,4 +26,3 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::middleware('auth')->get('/hello', [App\Http\Controllers\ApiTokenController::class, 'update'])->name('home');
-Route::post('/api/login', [AuthController::class, 'login']);
