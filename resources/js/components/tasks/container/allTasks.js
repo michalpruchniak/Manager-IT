@@ -48,8 +48,7 @@ const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted }) => {
         )}
     </ul>
     <AddTask />
-    <AllUsers />
-    <AddUser />
+
     </React.Fragment>
     )
 }

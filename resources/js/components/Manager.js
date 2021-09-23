@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from "redux";
 import { ToastContainer } from 'react-toastify';
 import Alltasks from './tasks/container/allTasks';
-import AddUser from './users/container/addUser';
+import AllUsers from './users/container/allUsers';
 
 import { composeWithDevTools } from "redux-devtools-extension";
 import allReducers from "./reducers";
@@ -33,15 +33,16 @@ function Manager() {
                         <div className="card-body">
                             <Router>
                                 <Switch>
-                                    <Route path="/all-tasks">
-                                        <Alltasks />
-                                    </Route>
-                                    <Route path="/add-user">
-                                        <AddUser />
-                                    </Route>
                                     <Route path="/login">
                                         <Login />
                                     </Route>
+                                    <Route path="/all-tasks">
+                                        <Alltasks />
+                                    </Route>
+                                    <Route path="/all-users">
+                                        <AllUsers />
+                                    </Route>
+
                                     <Route path="/">
                                         <Redirect to="/all-tasks" />
                                     </Route>

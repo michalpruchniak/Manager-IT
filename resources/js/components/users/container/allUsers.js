@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux"
 import { getAllUsers } from '../operations'
+import AddUser from './addUser'
 
 const UsersContainer = ({ users, getAllUsers }) => {
     useEffect(() => {getAllUsers()}, [])
@@ -11,6 +12,7 @@ const UsersContainer = ({ users, getAllUsers }) => {
                     <li >{user.email}</li>
                 )}
             </ul>
+                <AddUser />
         </div>
     )
     
