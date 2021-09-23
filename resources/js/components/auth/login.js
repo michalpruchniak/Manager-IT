@@ -24,11 +24,8 @@ const Register = () => {
         axios.get(url + "/sanctum/csrf-cookie").then(() => {
             axios.post(url + '/api/login', data)
                 .then(res => {
-                    window.localStorage.setItem('Authorization', res.data.token_type + ' ' + res.data.access_token);
+                    window.location.href = '#/all-tasks';
 
-                    window.location.href = 'home/#/all-tasks';
-
-            console.log('Udało się. Hurra!');
                 })
                 .catch(error => {
                     if (error.response.status == 401) {

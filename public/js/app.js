@@ -2081,9 +2081,7 @@ var Register = function Register() {
   var onSubmit = function onSubmit(data) {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get(_default__WEBPACK_IMPORTED_MODULE_3__.url + "/sanctum/csrf-cookie").then(function () {
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(_default__WEBPACK_IMPORTED_MODULE_3__.url + '/api/login', data).then(function (res) {
-        window.localStorage.setItem('Authorization', res.data.token_type + ' ' + res.data.access_token);
-        window.location.href = 'home/#/all-tasks';
-        console.log('Udało się. Hurra!');
+        window.location.href = '#/all-tasks';
       })["catch"](function (error) {
         if (error.response.status == 401) {
           setLogged("block");
