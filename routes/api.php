@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UsersController;
 
 
 
@@ -25,6 +27,9 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/taks/all-tasks', [TasksController::class, 'showAllTasks']);
     Route::post('/taks/store-task', [TasksController::class, 'storeTask']);
     Route::get('/taks/toggle-completed-task/{id}', [TasksController::class, 'toggleCompletedTask']);
+    Route::post('/users/store-user', [AdminController::class, 'storeUser']);
+    Route::get('/users/all-users', [UsersController::class, 'showAllUsers']);
+
 
      Route::get('/userdetails', function (Request $request) {
         return $request->user();

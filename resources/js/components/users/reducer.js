@@ -1,7 +1,7 @@
 import types from "../../config/types";
 const initialUsers = {
     name: 'users',
-    list: [{name: 'Bartek'}, {name: 'Marcin'}]
+    list: [{name: 'Bartek', email: 'bartek@gmail.com'}, {name: 'Marcin', email: "marcin@gmail.com"}]
 };
 
 

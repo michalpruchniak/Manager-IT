@@ -3,15 +3,8 @@ import axiosConfig from '../../config/axios';
 
 
 const fetchTasks  = async () => {
-    const response = await fetch('http://localhost:8000/api/taks/all-tasks', { 
-        method: 'GET',
-        headers: {
-            'Authorization': window.localStorage.getItem('Authorization')
-        }
-
-     })
-    const json = await response.json()
-
+    const response = await axiosConfig.get('api/taks/all-tasks');
+    const json = response.data;
     return json
 }
 

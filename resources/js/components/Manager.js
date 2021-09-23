@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from "redux";
 import { ToastContainer } from 'react-toastify';
 import Alltasks from './tasks/container/allTasks';
+import AddUser from './users/container/addUser';
 
 import { composeWithDevTools } from "redux-devtools-extension";
 import allReducers from "./reducers";
@@ -34,6 +35,9 @@ function Manager() {
                                 <Switch>
                                     <Route path="/all-tasks">
                                         <Alltasks />
+                                    </Route>
+                                    <Route path="/add-user">
+                                        <AddUser />
                                     </Route>
                                     <Route path="/login">
                                         <Login />
