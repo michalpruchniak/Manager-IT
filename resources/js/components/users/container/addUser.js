@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import axiosConfig from '../../../config/axios';
+import actions from '../actions';
 
-function createUser(){
+const addeUser = (props) => {
     const emailInput = React.createRef();
     const passwordInput = React.createRef();
     const storeUser = (event) => {
@@ -9,7 +11,8 @@ function createUser(){
             axiosConfig.post('api/users/store-user', {
                 email: emailInput.current.value,
                 password: passwordInput.current.value,
-            }).then(() => {
+            }).then((res) => {
+                props.add(res.data);
                 toast.success('User został dodany prawiodłowo', {
                     position: "bottom-left",
                     autoClose: 5000,
@@ -32,5 +35,8 @@ function createUser(){
         </form>
     );
 }
+const mapDispatchToProps = dispatch => ({
+    add: user => dispatch(actions.addUser(user))
+})
 
-export default createUser;
+export default connect(null, mapDispatchToProps)(addeUser);

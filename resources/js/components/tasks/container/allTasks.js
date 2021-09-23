@@ -5,7 +5,7 @@ import { toggleCompleted  } from '../operations';
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import AddTask from './addTask';
-
+import AddUser from '../../users/container/addUser'
 
 import { getAllTasks } from '../operations';
 import AllUsers from '../../users/container/allUsers';
@@ -49,6 +49,7 @@ const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted }) => {
     </ul>
     <AddTask />
     <AllUsers />
+    <AddUser />
     </React.Fragment>
     )
 }

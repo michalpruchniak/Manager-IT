@@ -2386,16 +2386,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions */ "./resources/js/components/tasks/actions.js");
 /* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operations */ "./resources/js/components/tasks/operations.js");
-/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
 /* harmony import */ var _addTask__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./addTask */ "./resources/js/components/tasks/container/addTask.js");
-/* harmony import */ var _users_container_allUsers__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../users/container/allUsers */ "./resources/js/components/users/container/allUsers.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _users_container_addUser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../users/container/addUser */ "./resources/js/components/users/container/addUser.js");
+/* harmony import */ var _users_container_allUsers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../users/container/allUsers */ "./resources/js/components/users/container/allUsers.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -2432,7 +2434,7 @@ var TasksContainer = function TasksContainer(_ref) {
 
               if (res == 1) {
                 toggleMarksAsCompleted(id);
-                react_toastify__WEBPACK_IMPORTED_MODULE_9__.toast.success('Zmieniono status tasku', {
+                react_toastify__WEBPACK_IMPORTED_MODULE_10__.toast.success('Zmieniono status tasku', {
                   position: "bottom-left",
                   autoClose: 5000,
                   hideProgressBar: false,
@@ -2442,7 +2444,7 @@ var TasksContainer = function TasksContainer(_ref) {
                   progress: undefined
                 });
               } else {
-                react_toastify__WEBPACK_IMPORTED_MODULE_9__.toast.error('Nie masz uprawnień do zmiany statusu tego tasku', {
+                react_toastify__WEBPACK_IMPORTED_MODULE_10__.toast.error('Nie masz uprawnień do zmiany statusu tego tasku', {
                   position: "bottom-left",
                   autoClose: 5000,
                   hideProgressBar: false,
@@ -2466,11 +2468,11 @@ var TasksContainer = function TasksContainer(_ref) {
     };
   }();
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("ul", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)(react__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("ul", {
       className: "tasks",
       children: tasks.list.map(function (task) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("li", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("li", {
           className: !task.completed ? 'activeTask' : 'completeTask',
           onClick: function onClick() {
             return markAsCompleted(task.id);
@@ -2478,7 +2480,7 @@ var TasksContainer = function TasksContainer(_ref) {
           children: task.name
         }, task.id);
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_addTask__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_users_container_allUsers__WEBPACK_IMPORTED_MODULE_7__.default, {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_addTask__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_users_container_allUsers__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_users_container_addUser__WEBPACK_IMPORTED_MODULE_7__.default, {})]
   });
 };
 
@@ -2699,23 +2701,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _config_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../config/axios */ "./resources/js/config/axios.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _config_axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../config/axios */ "./resources/js/config/axios.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions */ "./resources/js/components/users/actions.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
 
-function createUser() {
+
+
+var addeUser = function addeUser(props) {
   var emailInput = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
   var passwordInput = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
 
   var storeUser = function storeUser(event) {
     event.preventDefault();
-    _config_axios__WEBPACK_IMPORTED_MODULE_1__.default.post('api/users/store-user', {
+    _config_axios__WEBPACK_IMPORTED_MODULE_2__.default.post('api/users/store-user', {
       email: emailInput.current.value,
       password: passwordInput.current.value
-    }).then(function () {
+    }).then(function (res) {
+      props.add(res.data);
       toast.success('User został dodany prawiodłowo', {
         position: "bottom-left",
         autoClose: 5000,
@@ -2730,27 +2737,35 @@ function createUser() {
     });
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("form", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
     onSubmit: storeUser,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
       type: "string",
       id: "email",
       name: "email",
       placeholder: "example@example.com",
       ref: emailInput
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
       type: "password",
       id: "password",
       name: "password",
       ref: passwordInput
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
       role: "input",
       children: "Zapisz"
     })]
   });
-}
+};
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createUser);
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    add: function add(user) {
+      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_3__.default.addUser(user));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(null, mapDispatchToProps)(addeUser));
 
 /***/ }),
 
