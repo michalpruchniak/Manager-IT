@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux'
 import axiosConfig from '../../../config/axios';
 import actions from '../actions';
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const addeUser = (props) => {
     const emailInput = React.createRef();

@@ -1,17 +1,20 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import React from 'react';
+import { connect } from 'react-redux'
 import { useForm } from 'react-hook-form'
 
-import { url } from '../default'
-import Message from '../include/messages'
+import { url } from '../../../components/default'
+import Message from '../../include/messages'
 import {
     HashRouter as Router,
     Switch,
     Route,
     Redirect
 } from "react-router-dom";
+import actions from '../actions'
 
-const Register = () => {
+const Register = (props) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [logged, setLogged] = useState("none")
     useEffect(() => {
@@ -24,6 +27,8 @@ const Register = () => {
         axios.get(url + "/sanctum/csrf-cookie").then(() => {
             axios.post(url + '/api/login', data)
                 .then(res => {
+                    console.log(res);
+                    props.setUser(res.data.user);
                     window.location.href = '#/all-tasks';
 
                 })
@@ -68,5 +73,7 @@ const Register = () => {
         </div>
     );
 }
-
-export default Register;
+const mapDispatchToProps = dispatch => ({
+    setUser: user => dispatch(actions.setUser(user))
+})
+export default connect(null, mapDispatchToProps)(Register);

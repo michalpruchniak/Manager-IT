@@ -1,29 +1,21 @@
 import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from "redux";
+import {connect } from 'react-redux'
+
 import { ToastContainer } from 'react-toastify';
 import Alltasks from './tasks/container/allTasks';
+import AllUsers from './users/container/allUsers';
 
-import { composeWithDevTools } from "redux-devtools-extension";
+import Login from './auth/container/login';
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route,
-    Link
+    Redirect
 } from "react-router-dom";
+import { getUser } from './auth/operations';
 
-import allReducers from "./reducers";
-import thunk from 'redux-thunk'
-import AddTask from './tasks/container/addTask';
-import authProvider from './include/authProvider';
-
-
-const store = createStore(allReducers, composeWithDevTools(applyMiddleware(thunk)))
-function Manager() {
-useEffect(() => {
-    authProvider();
-})
+const Manager = ({getUser}) => {
+    useEffect(() => { getUser()  }, [])
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -31,8 +23,24 @@ useEffect(() => {
                     <div className="card">
                         <div className="card-header">Example Component</div>
                         <div className="card-body">
-                            <Alltasks />
-                            <AddTask />
+                            <Router>
+                                <Switch>
+                                    <Route path="/login">
+                                        <Login />
+                                    </Route>
+                                    <Route path="/all-tasks">
+                                        <Alltasks />
+                                    </Route>
+                                    <Route path="/all-users">
+                                        <AllUsers />
+                                    </Route>
+
+                                    <Route path="/">
+                                        <Redirect to="/all-tasks" />
+                                    </Route>
+
+                                </Switch>
+                            </Router>
                             <ToastContainer />
                         </div>
 
@@ -42,13 +50,7 @@ useEffect(() => {
         </div>
     );
 }
-
-export default Manager;
-
-if (document.getElementById('manager')) {
-    ReactDOM.render(
-        <Provider store={store}>
-            <Manager />
-        </Provider>
-        , document.getElementById('manager'));
-}
+const mapDispatchToProps = dispatch => ({
+    getUser: () => dispatch(getUser()),
+})
+export default connect(null, mapDispatchToProps)(Manager);

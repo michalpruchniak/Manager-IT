@@ -48,7 +48,8 @@ class AuthController extends Controller
             $cookie = cookie('jwt', $token, 60*24);
 
             return \response([
-                'jwt' => $token
+                'jwt' => $token,
+                'user' => $user
             ])->withCookie($cookie);
 
         
@@ -60,9 +61,6 @@ class AuthController extends Controller
         return response()->json(['msg' => 'Logout Successfull']);
     }
 
-    public function example(Request $request)
-    {
-        echo("Hello World");
-    }
+
 
 }
