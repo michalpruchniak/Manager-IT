@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import {connect } from 'react-redux'
 
 import { ToastContainer } from 'react-toastify';
+import AuthProvider from './AuthProvider';
 import Alltasks from './tasks/container/allTasks';
 import AllUsers from './users/container/allUsers';
 
@@ -12,10 +12,8 @@ import {
     Route,
     Redirect
 } from "react-router-dom";
-import { getUser } from './auth/operations';
 
-const Manager = ({getUser}) => {
-    useEffect(() => { getUser()  }, [])
+const Manager = () => {
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -28,17 +26,18 @@ const Manager = ({getUser}) => {
                                     <Route path="/login">
                                         <Login />
                                     </Route>
-                                    <Route path="/all-tasks">
-                                        <Alltasks />
-                                    </Route>
-                                    <Route path="/all-users">
-                                        <AllUsers />
-                                    </Route>
+                                    <AuthProvider>
+                                        <Route path="/all-tasks">
+                                            <Alltasks />
+                                        </Route>
+                                        <Route path="/all-users">
+                                            <AllUsers />
+                                        </Route>
 
-                                    <Route path="/">
-                                        <Redirect to="/all-tasks" />
-                                    </Route>
-
+                                        <Route path="/">
+                                            <Redirect to="/all-tasks" />
+                                        </Route>
+                                    </AuthProvider>
                                 </Switch>
                             </Router>
                             <ToastContainer />
@@ -50,7 +49,4 @@ const Manager = ({getUser}) => {
         </div>
     );
 }
-const mapDispatchToProps = dispatch => ({
-    getUser: () => dispatch(getUser()),
-})
-export default connect(null, mapDispatchToProps)(Manager);
+export default Manager;

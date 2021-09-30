@@ -18,9 +18,9 @@ const Register = (props) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [logged, setLogged] = useState("none")
     useEffect(() => {
-            <Router>
-                <Redirect to="/all-tasks" />
-            </Router>
+            // <Router>
+            //     <Redirect to="/all-tasks" />
+            // </Router>
         
     })
     const onSubmit = data => {
@@ -28,8 +28,12 @@ const Register = (props) => {
             axios.post(url + '/api/login', data)
                 .then(res => {
                     console.log(res);
-                    props.setUser(res.data.user);
-                    window.location.href = '#/all-tasks';
+                    if (res.data.jwt) {
+                        props.setUser(res.data.user);
+                        window.location.href = '#/all-tasks';
+                        window.localStorage.setItem('login', res.data.user.id);
+
+                    }
 
                 })
                 .catch(error => {
