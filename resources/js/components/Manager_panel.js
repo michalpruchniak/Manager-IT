@@ -1,19 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { ToastContainer } from 'react-toastify';
-import AuthProvider from './AuthProvider';
 import Alltasks from './tasks/container/allTasks';
 import AllUsers from './users/container/allUsers';
-
+import { getUser } from './auth/operations';
 import Login from './auth/container/login';
+import {connect } from 'react-redux';
+import { history } from './history';
 import {
     HashRouter as Router,
     Switch,
-    Route,
-    Redirect
+    Route
 } from "react-router-dom";
 
-const Manager = () => {
+
+const Manager = ({ getUser, user }) => {
+
     return (
         <div className="container">
             <div className="row justify-content-center">
@@ -21,12 +23,11 @@ const Manager = () => {
                     <div className="card">
                         <div className="card-header">Example Component</div>
                         <div className="card-body">
-                            <Router>
+                            <Router history={history}>
                                 <Switch>
                                     <Route path="/login">
                                         <Login />
                                     </Route>
-                                    <AuthProvider>
                                         <Route path="/all-tasks">
                                             <Alltasks />
                                         </Route>
@@ -34,10 +35,6 @@ const Manager = () => {
                                             <AllUsers />
                                         </Route>
 
-                                        <Route path="/">
-                                            <Redirect to="/all-tasks" />
-                                        </Route>
-                                    </AuthProvider>
                                 </Switch>
                             </Router>
                             <ToastContainer />
@@ -49,4 +46,8 @@ const Manager = () => {
         </div>
     );
 }
-export default Manager;
+const mapDispatchToProps = dispatch => ({
+    getUser: () => dispatch(getUser())
+})
+
+export default connect(null, mapDispatchToProps)(Manager)

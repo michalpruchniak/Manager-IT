@@ -1,6 +1,6 @@
 import actions from "./actions";
 import axiosConfig from '../../config/axios';
-
+import { history } from "../history";
 
 const fetchTasks  = async () => {
     const response = await axiosConfig.get('api/taks/all-tasks');
@@ -12,14 +12,21 @@ export const toggleCompleted  = (id) => {
     return axiosConfig.get('api/taks/toggle-completed-task/' + id)
                .then(res => {
                   return res.data;
-               }).catch(error => {
-                   return error;
+               }).catch(err => {
+                   history.push('/login');
+
                })
 }
 
 export const getAllTasks = () =>
     async (dispatch) => {
-        const tasks = await fetchTasks()
-        tasks.map(task => dispatch(actions.addTask(task)))
+        try{
+            const tasks = await fetchTasks()
+            tasks.map(task => dispatch(actions.addTask(task)))
+        } catch(err) {
+            history.push('/login');
+
+        }
+        
     }
 

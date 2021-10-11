@@ -16,9 +16,9 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('hom');
+// });
 Route::middleware('auth')->get('/ble', [TasksController::class, 'showAllTasks']);
 Route::get('/token', [TasksController::class, 'getToken']);
 
