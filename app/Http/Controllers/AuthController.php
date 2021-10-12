@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller
 {
@@ -46,11 +47,12 @@ class AuthController extends Controller
 
             $token = $user->createToken('token')->plainTextToken;
             $cookie = cookie('jwt', $token, 60*24);
-
+            $userCookie= cookie('user', $user, 60*24);
             return \response([
                 'jwt' => $token,
                 'user' => $user
-            ])->withCookie($cookie);
+            ])->withCookie($cookie)
+              ->withCookie($userCookie);
 
         
     }

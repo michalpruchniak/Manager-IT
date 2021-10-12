@@ -8,10 +8,10 @@ import AddTask from './addTask';
 
 import { getAllTasks } from '../operations';
 
-const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted }) => {
+const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted, user }) => {
     useEffect(() => { 
         try {
-            getAllTasks()
+            getAllTasks();
 
         } catch(err){
             history.pushState
@@ -49,21 +49,21 @@ const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted }) => {
     <ul className="tasks">
         {tasks.list.map(task =>
             <li key={task.id} className={!task.completed ? 'activeTask' : 'completeTask'}
-             onClick={() => markAsCompleted(task.id)}>{task.name}</li>
+                onClick={() => markAsCompleted(task.id)}>{task.name} {(task.user_id === user.user.id) ? <i class="fas fa-circle"></i> : <i class="far fa-circle"></i>}</li>
         )}
     </ul>
     <AddTask />
-
     </React.Fragment>
     )
 }
 const mapStateToProps = state => ({
-    tasks: state.tasks
+    tasks: state.tasks,
+    user: state.user,
 })
 
 const mapDispatchToProps = dispatch => ({
     getAllTasks: () => dispatch(getAllTasks()),
-    toggleMarksAsCompleted: (id) => dispatch(actions.completedTask(id)),
+    toggleMarksAsCompleted: (id) => dispatch(actions.completedTask(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(TasksContainer)

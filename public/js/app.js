@@ -1984,6 +1984,9 @@ __webpack_require__.r(__webpack_exports__);
 var Manager = function Manager(_ref) {
   var getUser = _ref.getUser,
       user = _ref.user;
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    getUser();
+  });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
     className: "container",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -2592,7 +2595,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var TasksContainer = function TasksContainer(_ref) {
   var tasks = _ref.tasks,
       getAllTasks = _ref.getAllTasks,
-      toggleMarksAsCompleted = _ref.toggleMarksAsCompleted;
+      toggleMarksAsCompleted = _ref.toggleMarksAsCompleted,
+      user = _ref.user;
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     try {
       getAllTasks();
@@ -2654,12 +2658,16 @@ var TasksContainer = function TasksContainer(_ref) {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("ul", {
       className: "tasks",
       children: tasks.list.map(function (task) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("li", {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("li", {
           className: !task.completed ? 'activeTask' : 'completeTask',
           onClick: function onClick() {
             return markAsCompleted(task.id);
           },
-          children: task.name
+          children: [task.name, " ", task.user_id === user.user.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
+            "class": "fas fa-circle"
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("i", {
+            "class": "far fa-circle"
+          })]
         }, task.id);
       })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_addTask__WEBPACK_IMPORTED_MODULE_6__.default, {})]
@@ -2668,7 +2676,8 @@ var TasksContainer = function TasksContainer(_ref) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    tasks: state.tasks
+    tasks: state.tasks,
+    user: state.user
   };
 };
 

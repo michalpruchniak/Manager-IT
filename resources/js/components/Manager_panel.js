@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { ToastContainer } from 'react-toastify';
 import Alltasks from './tasks/container/allTasks';
@@ -15,7 +15,9 @@ import {
 
 
 const Manager = ({ getUser, user }) => {
-
+    useEffect(() => {
+        getUser();
+    });
     return (
         <div className="container">
             <div className="row justify-content-center">
