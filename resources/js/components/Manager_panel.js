@@ -10,7 +10,8 @@ import { history } from './history';
 import {
     HashRouter as Router,
     Switch,
-    Route
+    Route,
+    Redirect
 } from "react-router-dom";
 
 
@@ -36,7 +37,9 @@ const Manager = ({ getUser, user }) => {
                                         <Route path="/all-users">
                                             <AllUsers />
                                         </Route>
-
+                                    <Route path="/">
+                                        <Redirect to="/login" />
+                                    </Route>
                                 </Switch>
                             </Router>
                             <ToastContainer />

@@ -49,7 +49,7 @@ const TasksContainer = ({ tasks, getAllTasks, toggleMarksAsCompleted, user }) =>
     <ul className="tasks">
         {tasks.list.map(task =>
             <li key={task.id} className={!task.completed ? 'activeTask' : 'completeTask'}
-                onClick={() => markAsCompleted(task.id)}>{task.name} {(task.user_id === user.user.id) ? <i class="fas fa-circle"></i> : <i class="far fa-circle"></i>}</li>
+                onClick={() => markAsCompleted(task.id)}>{task.name} {(task.user_id === user.user.id) ? <i className="fas fa-circle"></i> : <i className="far fa-circle"></i>}</li>
         )}
     </ul>
     <AddTask />

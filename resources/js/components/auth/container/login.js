@@ -10,7 +10,7 @@ import actions from '../actions'
 
 const Register = (props) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [logged, setLogged] = useState("none")
+    const [logged, setLogged] = useState("none");
     const onSubmit = data => {
         axios.get(url + "/sanctum/csrf-cookie").then(() => {
             axios.post(url + '/api/login', data)
