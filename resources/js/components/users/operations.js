@@ -20,3 +20,22 @@ export const getAllUsers = () =>
         
 
     }
+
+export const changeUserRole = async (role, userID) =>{
+    try {
+        switch(role){
+            case 'user':
+                role = 1
+            break;
+            case 'moderator':
+                role = 2
+            break;
+            default:
+                role = 1
+            break;
+        }
+        const response = await axiosConfig.get('api/users/admin/change-role/' + role + '/' + userID);
+    } catch(err) {
+
+    }
+}

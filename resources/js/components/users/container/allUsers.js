@@ -2,14 +2,19 @@ import React, { useEffect } from 'react'
 import { connect } from "react-redux"
 import { getAllUsers } from '../operations'
 import AddUser from './addUser'
+import SelectRole from './selectRole';
+import { changeUserRole } from '../operations'
+import { toast } from 'react-toastify'
 
 const UsersContainer = ({ users, getAllUsers }) => {
     useEffect(() => {getAllUsers()}, [])
+
+
     return (
         <React.Fragment>
         <table className="table">
             <thead>
-                <tr>
+                    <tr className="thead-dark">
                     <th scope="col">#</th>
                     <th scope="col">name</th>
                     <th scope="col">email</th>
@@ -21,18 +26,19 @@ const UsersContainer = ({ users, getAllUsers }) => {
                     <tr key={user.id}>
                         <th scope="row">{user.id}</th>
                         <td>{user.name}</td>
-                        <td>{user.email}</td>
+                        <td>{user.email} </td>
                         <td>
-                           <div className="form-group">
+                           {/* <div className="form-group">
 
                             <form>
-                                    <select>
-                                        <option value="user">Użytkownik</option>
-                                        <option value="moderator">Moderator</option>
-                                    </select>
+                                <select onChange={(e) => selectChange(e.target.value, user.id)}>
+                                    <option value="user">Użytkownik</option>
+                                        <option value="moderator"> Moderator</option>
+                                </select>
 
                             </form>
-                            </div>
+                            </div> */}
+                            <SelectRole user={user} />
 
                         </td>
                     </tr>

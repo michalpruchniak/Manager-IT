@@ -11,4 +11,11 @@ class UsersController extends Controller
         $users = User::all();
         return json_encode($users);
     }
+
+    public function changeRole($role, $userID){
+        $user = User::find($userID);
+        $user->role = $role;
+        $user->save();
+        
+    }
 }
