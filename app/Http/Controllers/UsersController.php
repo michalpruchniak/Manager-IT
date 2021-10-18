@@ -16,6 +16,5 @@ class UsersController extends Controller
         $user = User::find($userID);
         $user->role = $role;
         $user->save();
-        
     }
 }

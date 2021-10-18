@@ -1,16 +1,8 @@
 import { changeUserRole } from '../operations'
-import  OptionRole  from './optionRole'
 import { toast } from 'react-toastify'
 
 
 const SelectRole = ({user}) => {
-    const options = [
-  { value: 'C++', label: 'C++' },
-  { value: 'JAVA', label: 'JAVA' },
-  { value: 'Javascript', label: 'Javascript' },
-  { value: 'Python', label: 'Python' },
-  { value: 'Swift', label: 'Swift' }
-];
     const selectChange = (role, id) => {
         try {
             changeUserRole(role, id);

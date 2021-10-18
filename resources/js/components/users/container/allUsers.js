@@ -28,16 +28,6 @@ const UsersContainer = ({ users, getAllUsers }) => {
                         <td>{user.name}</td>
                         <td>{user.email} </td>
                         <td>
-                           {/* <div className="form-group">
-
-                            <form>
-                                <select onChange={(e) => selectChange(e.target.value, user.id)}>
-                                    <option value="user">Użytkownik</option>
-                                        <option value="moderator"> Moderator</option>
-                                </select>
-
-                            </form>
-                            </div> */}
                             <SelectRole user={user} />
 
                         </td>

@@ -1,13 +1,10 @@
 import { useEffect } from "react";
 
-const OptionRole = ({ userRole, role, name}) => {
-    useEffect(() => {
-        console.log(user.role);
-    })
+const OptionRole = ({ userRole, role, value, name}) => {
     if(userRole == role){
-        return <option value={name} selected>{name}</option>
+        return <option value={value}>{name}</option>
     } else {
-        return <option value={name}>{name}</option>
+        return <option value={value}>{name}</option>
     }
 }
 

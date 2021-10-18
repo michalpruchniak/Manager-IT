@@ -24,11 +24,14 @@ export const getAllUsers = () =>
 export const changeUserRole = async (role, userID) =>{
     try {
         switch(role){
-            case 'user':
+            case '1':
                 role = 1
             break;
-            case 'moderator':
+            case '2':
                 role = 2
+            break;
+            case '3':
+                role = 3
             break;
             default:
                 role = 1
