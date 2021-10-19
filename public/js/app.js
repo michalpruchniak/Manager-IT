@@ -2936,7 +2936,7 @@ var addeUser = function addeUser(props) {
       handleSubmit = _useForm.handleSubmit,
       errors = _useForm.formState.errors;
 
-  var storeUser = function storeUser(data) {
+  var storeUser = function storeUser(data, e) {
     _config_axios__WEBPACK_IMPORTED_MODULE_2__.default.post('api/users/store-user', {
       name: data.name,
       email: data.email,
@@ -2952,6 +2952,7 @@ var addeUser = function addeUser(props) {
         draggable: true,
         progress: undefined
       });
+      e.target.reset();
     })["catch"](function (error) {
       console.log(error);
     });

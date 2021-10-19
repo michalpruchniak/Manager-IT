@@ -7,12 +7,11 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useForm } from 'react-hook-form'
 
 const addeUser = (props) => {
-
     const { 
         register,
         handleSubmit,
         formState: { errors } } = useForm();
-    const storeUser = (data) => {
+    const storeUser = (data, e) => {
             axiosConfig.post('api/users/store-user', {
                 name: data.name,
                 email: data.email,
@@ -28,6 +27,7 @@ const addeUser = (props) => {
                     draggable: true,
                     progress: undefined,
                 });
+                e.target.reset();
 
             }).catch((error) => {
                 console.log(error);
