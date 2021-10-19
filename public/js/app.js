@@ -2931,19 +2931,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var addeUser = function addeUser(props) {
-  var emailInput = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
-  var passwordInput = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
-
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_5__.useForm)(),
       register = _useForm.register,
       handleSubmit = _useForm.handleSubmit,
       errors = _useForm.formState.errors;
 
-  var storeUser = function storeUser(event) {
-    event.preventDefault();
+  var storeUser = function storeUser(data) {
     _config_axios__WEBPACK_IMPORTED_MODULE_2__.default.post('api/users/store-user', {
-      email: emailInput.current.value,
-      password: passwordInput.current.value
+      name: data.name,
+      email: data.email,
+      password: data.password
     }).then(function (res) {
       props.add(res.data);
       react_toastify__WEBPACK_IMPORTED_MODULE_7__.toast.success('User został dodany prawiodłowo', {
@@ -2961,23 +2958,61 @@ var addeUser = function addeUser(props) {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
-    onSubmit: function onSubmit(event) {
-      return handleSubmit(storeUser(event));
-    },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({}, register("email", {
-      required: true
-    })), {}, {
-      ref: emailInput
-    })), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-      children: "This field is required"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread(_objectSpread({}, register("password", {
-      required: true
-    })), {}, {
-      ref: passwordInput
-    })), errors.password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-      children: "This field is required"
+    onSubmit: handleSubmit(storeUser),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "form-group",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+        "for": "name",
+        children: "Imi\u0119"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
+        className: "form-control",
+        id: "name",
+        type: "string",
+        placeholder: "name"
+      }, register("name", {
+        required: true
+      }))), errors.name && errors.name.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        children: "To pole jest wymagane"
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "form-group",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+        "for": "email",
+        children: "Email"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
+        className: "form-control",
+        id: "email",
+        type: "email",
+        placeholder: "example@example.com"
+      }, register("email", {
+        required: true,
+        pattern: {
+          value: /\S+@\S+\.\S+/,
+          message: "To nie jest poprawny format adresu email"
+        }
+      }))), errors.email && errors.email.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        children: "To pole jest wymagane"
+      }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        children: errors.email.message
+      })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "form-group",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
+        "for": "password",
+        children: "Has\u0142o"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
+        className: "form-control",
+        id: "password",
+        type: "password",
+        placeholder: "password"
+      }, register("password", {
+        required: true
+      }))), errors.password && errors.password.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        children: "To pole jest wymagane"
+      })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
       role: "input",
+      "class": "btn btn-primary",
       children: "Zapisz"
     })]
   });

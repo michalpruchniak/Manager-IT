@@ -7,18 +7,16 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useForm } from 'react-hook-form'
 
 const addeUser = (props) => {
-    const emailInput = React.createRef();
-    const passwordInput = React.createRef();
 
     const { 
         register,
         handleSubmit,
         formState: { errors } } = useForm();
-    const storeUser = (event) => {
-        event.preventDefault();
+    const storeUser = (data) => {
             axiosConfig.post('api/users/store-user', {
-                email: emailInput.current.value,
-                password: passwordInput.current.value,
+                name: data.name,
+                email: data.email,
+                password: data.password,
             }).then((res) => {
                 props.add(res.data);
                 toast.success('User został dodany prawiodłowo', {
@@ -36,15 +34,51 @@ const addeUser = (props) => {
             });
     }
     return(
-        <form onSubmit={(event) => handleSubmit(storeUser(event))}>
-            <input {...register("email", { required: true })} ref={emailInput} />
-            {errors.email && <span>This field is required</span>}
-
-            <input {...register("password", { required: true })} ref={passwordInput} />
-            {errors.password && <span>This field is required</span>}
-
-            <button role="input">Zapisz</button>
+        <form onSubmit={handleSubmit(storeUser)}>
+            <div className="form-group">
+                <label for="name">Imię</label>
+                <input 
+                    className="form-control"
+                    id="name"
+                    type="string" 
+                    placeholder="name" {
+                    ...register("name", {
+                        required: true})
+                        }
+                />
+                {errors.name && errors.name.type === "required" && <span>To pole jest wymagane</span>}
+            </div>
+            <div className="form-group">
+                <label for="email">Email</label>
+                <input
+                    className="form-control" 
+                    id="email"
+                    type="email" 
+                    placeholder="example@example.com" {
+                    ...register("email", {
+                    required: true, pattern: {
+                        value: /\S+@\S+\.\S+/,
+                        message: "To nie jest poprawny format adresu email"
+                    } })} 
+                />
+                {errors.email && errors.email.type === "required" && <span>To pole jest wymagane</span>}
+                {errors.email && <span>{errors.email.message}</span>}
+            </div>
+            <div className="form-group">
+                <label for="password">Hasło</label>
+                <input 
+                    className="form-control"
+                    id="password"
+                    type="password" 
+                    placeholder="password" {
+                    ...register("password", {
+                        required: true })}
+                />
+                {errors.password && errors.password.type === "required" && <span>To pole jest wymagane</span>}
+            </div>
+            <button role="input" class="btn btn-primary">Zapisz</button>
         </form>
+
     );
 }
 const mapDispatchToProps = dispatch => ({

@@ -24,9 +24,9 @@ class TasksController extends Controller
     public function toggleCompletedTask($id, Request $request){
         $tasks = Tasks::find($id);
         if(
-            $tasks->user_id === $request->user()->id
-            // $request->user()->admin === true ||
-            // $request->user()->moderator === true
+            $tasks->user_id === $request->user()->id ||
+            $request->user()->role === 2 ||
+            $request->user()->role === 3
             ) {
                 $tasks->completed = !$tasks->completed;
                 $tasks->save();
@@ -37,7 +37,5 @@ class TasksController extends Controller
             }
     }
 
-    public function auth(){
-        dd(Auth::id());
-    }
+
 }
