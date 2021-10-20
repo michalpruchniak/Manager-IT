@@ -2416,6 +2416,60 @@ message.defaultProps = {
 
 /***/ }),
 
+/***/ "./resources/js/components/include/toast.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/include/toast.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
+/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function (type, text) {
+  switch (type) {
+    case 'success':
+      return react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success("".concat(text), {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
+
+    case 'error':
+      return react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.error("".concat(text), {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
+
+    default:
+      return react_toastify__WEBPACK_IMPORTED_MODULE_1__.toast.success("".concat(text), {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined
+      });
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/components/reducers.js":
 /*!*********************************************!*\
   !*** ./resources/js/components/reducers.js ***!
@@ -2908,12 +2962,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _config_axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../config/axios */ "./resources/js/config/axios.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions */ "./resources/js/components/users/actions.js");
-/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
-/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./resources/js/components/users/actions.js");
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.js");
+/* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operations */ "./resources/js/components/users/operations.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2928,59 +2980,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
 var addeUser = function addeUser(props) {
-  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_5__.useForm)(),
+  var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_3__.useForm)(),
       register = _useForm.register,
       handleSubmit = _useForm.handleSubmit,
       errors = _useForm.formState.errors;
 
-  var storeUser = function storeUser(data, e) {
-    _config_axios__WEBPACK_IMPORTED_MODULE_2__.default.post('api/users/store-user', {
-      name: data.name,
-      email: data.email,
-      password: data.password
-    }).then(function (res) {
-      props.add(res.data);
-      react_toastify__WEBPACK_IMPORTED_MODULE_7__.toast.success('User został dodany prawiodłowo', {
-        position: "bottom-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      });
-      e.target.reset();
-    })["catch"](function (error) {
-      console.log(error);
-    });
+  var submitAddUserForm = function submitAddUserForm(data, e) {
+    (0,_operations__WEBPACK_IMPORTED_MODULE_4__.storeUser)(props, data, e);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
-    onSubmit: handleSubmit(storeUser),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+    onSubmit: handleSubmit(submitAddUserForm),
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "form-group",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-        "for": "name",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+        htmlFor: "name",
         children: "Imi\u0119"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread({
         className: "form-control",
         id: "name",
         type: "string",
         placeholder: "name"
       }, register("name", {
-        required: true
-      }))), errors.name && errors.name.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        required: true,
+        minLength: 3,
+        maxLength: 30
+      }))), errors.name && errors.name.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
         children: "To pole jest wymagane"
+      }), errors.name && errors.name.type === "minLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        children: "To pole musi mie\u0107 przynajmniej 3 znaki"
+      }), errors.name && errors.name.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        children: "To pole mo\u017Ce mie\u0107 maksymalnie 30 znak\xF3w"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "form-group",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-        "for": "email",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+        htmlFor: "email",
         children: "Email"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread({
         className: "form-control",
         id: "email",
         type: "email",
@@ -2988,32 +3026,33 @@ var addeUser = function addeUser(props) {
       }, register("email", {
         required: true,
         pattern: {
-          value: /\S+@\S+\.\S+/,
-          message: "To nie jest poprawny format adresu email"
+          value: /\S+@\S+\.\S+/
         }
-      }))), errors.email && errors.email.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+      }))), errors.email && errors.email.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
         children: "To pole jest wymagane"
-      }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-        children: errors.email.message
+      }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+        children: "To nie jest poprawny format adresu email"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
       className: "form-group",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
-        "for": "password",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+        htmlFor: "password",
         children: "Has\u0142o"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread({
         className: "form-control",
         id: "password",
         type: "password",
         placeholder: "password"
       }, register("password", {
-        required: true
-      }))), errors.password && errors.password.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        required: true,
+        minLength: 8,
+        maxLength: 50
+      }))), errors.password && errors.password.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
         children: "To pole jest wymagane"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
       role: "input",
-      "class": "btn btn-primary",
+      className: "btn btn-primary",
       children: "Zapisz"
     })]
   });
@@ -3022,7 +3061,7 @@ var addeUser = function addeUser(props) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     add: function add(user) {
-      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_3__.default.addUser(user));
+      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_2__.default.addUser(user));
     }
   };
 };
@@ -3208,18 +3247,21 @@ var SelectRole = function SelectRole(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getAllUsers": () => (/* binding */ getAllUsers),
-/* harmony export */   "changeUserRole": () => (/* binding */ changeUserRole)
+/* harmony export */   "changeUserRole": () => (/* binding */ changeUserRole),
+/* harmony export */   "storeUser": () => (/* binding */ storeUser)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _config_axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../config/axios */ "./resources/js/config/axios.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./actions */ "./resources/js/components/users/actions.js");
 /* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../history */ "./resources/js/components/history.js");
+/* harmony import */ var _include_toast__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../include/toast */ "./resources/js/components/include/toast.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -3344,6 +3386,23 @@ var changeUserRole = /*#__PURE__*/function () {
     return _ref3.apply(this, arguments);
   };
 }();
+var storeUser = function storeUser(props, data, e) {
+  _config_axios__WEBPACK_IMPORTED_MODULE_1__.default.post('api/users/store-user', {
+    name: data.name,
+    email: data.email,
+    password: data.password
+  }).then(function (res) {
+    props.add(res.data);
+    (0,_include_toast__WEBPACK_IMPORTED_MODULE_4__.default)('success', 'User został dodany poprawnie');
+    e.target.reset();
+  })["catch"](function (error) {
+    if (error.response.data.errors) {
+      for (var klucz in error.response.data.errors) {
+        (0,_include_toast__WEBPACK_IMPORTED_MODULE_4__.default)('error', "".concat(error.response.data.errors[klucz]));
+      }
+    }
+  });
+};
 
 /***/ }),
 

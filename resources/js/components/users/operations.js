@@ -2,6 +2,8 @@ import axiosConfig from '../../config/axios';
 import actions from './actions';
 import { history } from '../history';
 
+import displayToast from '../include/toast'
+
 const fetchUsers = async () => {
     const response = await axiosConfig.get('api/users/all-users');
     const json = response.data;
@@ -41,4 +43,23 @@ export const changeUserRole = async (role, userID) =>{
     } catch(err) {
 
     }
+}
+
+export const storeUser = (props, data, e) => {
+    axiosConfig.post('api/users/store-user', {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+    }).then((res) => {
+        props.add(res.data);
+        displayToast('success', 'User został dodany poprawnie');
+        e.target.reset();
+
+    }).catch((error) => {
+        if (error.response.data.errors) {
+            for (let klucz in error.response.data.errors) {
+                displayToast('error', `${error.response.data.errors[klucz]}`);
+            }
+        }
+    });
 }
