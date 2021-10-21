@@ -2130,7 +2130,6 @@ var Register = function Register(props) {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get(_components_default__WEBPACK_IMPORTED_MODULE_4__.url + "/sanctum/csrf-cookie").then(function () {
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(_components_default__WEBPACK_IMPORTED_MODULE_4__.url + '/api/login', data).then(function (res) {
         if (res.data.jwt) {
-          console.log(res.data.user);
           props.setUser({
             id: res.data.user.id,
             name: res.data.user.name
@@ -2155,12 +2154,14 @@ var Register = function Register(props) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
       onSubmit: handleSubmit(onSubmit),
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        className: "input_row",
+        className: "form-group",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
           htmlFor: "email",
           children: "Email"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", _objectSpread(_defineProperty({
-          type: "text",
+          type: "email",
+          id: "email",
+          className: "form-control",
           placeholder: "Email"
         }, "placeholder", "example@example.com"), register("email", {
           required: true,
@@ -2171,13 +2172,14 @@ var Register = function Register(props) {
           message: "To nie jest prawid\u0142owy format adresu email"
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        className: "input_row",
+        className: "form-group",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
           htmlFor: "password",
           children: "Has\u0142o"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", _objectSpread({
           id: "password",
-          type: "password"
+          type: "password",
+          className: "form-control"
         }, register("password", {
           required: true,
           minLength: 8,
@@ -2189,12 +2191,10 @@ var Register = function Register(props) {
         }), errors.password && errors.password.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
           message: "Maksymalna ilo\u015B\u0107 znak\xF3w wynosi 45"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-        className: "input_row",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
-          role: "submit",
-          children: "Zaloguj si\u0119"
-        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+        className: "btn btn-primary",
+        role: "submit",
+        children: "Zaloguj si\u0119"
       })]
     })]
   });
