@@ -45,13 +45,13 @@ export const changeUserRole = async (role, userID) =>{
     }
 }
 
-export const storeUser = (props, data, e) => {
+export const storeUser = (addUserToStore, data, e) => {
     axiosConfig.post('api/users/store-user', {
         name: data.name,
         email: data.email,
         password: data.password,
     }).then((res) => {
-        props.add(res.data);
+        addUserToStore(res.data);
         displayToast('success', 'User został dodany poprawnie');
         e.target.reset();
 

@@ -2385,6 +2385,32 @@ var history = new history__WEBPACK_IMPORTED_MODULE_0__.createHashHistory();
 
 /***/ }),
 
+/***/ "./resources/js/components/include/alerts.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/include/alerts.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "AlertError": () => (/* binding */ AlertError)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var AlertError = function AlertError(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "alert alert-danger",
+    role: "alert",
+    children: props.children
+  });
+};
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/include/messages.js":
 /*!*****************************************************!*\
   !*** ./resources/js/components/include/messages.js ***!
@@ -2965,12 +2991,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./resources/js/components/users/actions.js");
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-hook-form */ "./node_modules/react-hook-form/dist/index.esm.js");
 /* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../operations */ "./resources/js/components/users/operations.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _include_alerts__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../include/alerts */ "./resources/js/components/include/alerts.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2987,17 +3015,17 @@ var addeUser = function addeUser(props) {
       errors = _useForm.formState.errors;
 
   var submitAddUserForm = function submitAddUserForm(data, e) {
-    (0,_operations__WEBPACK_IMPORTED_MODULE_4__.storeUser)(props, data, e);
+    (0,_operations__WEBPACK_IMPORTED_MODULE_4__.storeUser)(props.add, data, e);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
     onSubmit: handleSubmit(submitAddUserForm),
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "form-group",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
         htmlFor: "name",
         children: "Imi\u0119"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread({
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
         className: "form-control",
         id: "name",
         type: "string",
@@ -3006,19 +3034,19 @@ var addeUser = function addeUser(props) {
         required: true,
         minLength: 3,
         maxLength: 30
-      }))), errors.name && errors.name.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      }))), errors.name && errors.name.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_alerts__WEBPACK_IMPORTED_MODULE_5__.AlertError, {
         children: "To pole jest wymagane"
-      }), errors.name && errors.name.type === "minLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      }), errors.name && errors.name.type === "minLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_alerts__WEBPACK_IMPORTED_MODULE_5__.AlertError, {
         children: "To pole musi mie\u0107 przynajmniej 3 znaki"
-      }), errors.name && errors.name.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      }), errors.name && errors.name.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_alerts__WEBPACK_IMPORTED_MODULE_5__.AlertError, {
         children: "To pole mo\u017Ce mie\u0107 maksymalnie 30 znak\xF3w"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "form-group",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
         htmlFor: "email",
         children: "Email"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread({
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
         className: "form-control",
         id: "email",
         type: "email",
@@ -3028,17 +3056,17 @@ var addeUser = function addeUser(props) {
         pattern: {
           value: /\S+@\S+\.\S+/
         }
-      }))), errors.email && errors.email.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      }))), errors.email && errors.email.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_alerts__WEBPACK_IMPORTED_MODULE_5__.AlertError, {
         children: "To pole jest wymagane"
-      }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_alerts__WEBPACK_IMPORTED_MODULE_5__.AlertError, {
         children: "To nie jest poprawny format adresu email"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "form-group",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("label", {
         htmlFor: "password",
         children: "Has\u0142o"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", _objectSpread({
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", _objectSpread({
         className: "form-control",
         id: "password",
         type: "password",
@@ -3047,10 +3075,14 @@ var addeUser = function addeUser(props) {
         required: true,
         minLength: 8,
         maxLength: 50
-      }))), errors.password && errors.password.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+      }))), errors.password && errors.password.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_alerts__WEBPACK_IMPORTED_MODULE_5__.AlertError, {
         children: "To pole jest wymagane"
+      }), errors.password && errors.name.type === "minLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_alerts__WEBPACK_IMPORTED_MODULE_5__.AlertError, {
+        children: "To pole musi mie\u0107 przynajmniej 8 znak\xF3w"
+      }), errors.password && errors.name.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_include_alerts__WEBPACK_IMPORTED_MODULE_5__.AlertError, {
+        children: "To pole mo\u017Ce mie\u0107 maksymalnie 50 znak\xF3w"
       })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
       role: "input",
       className: "btn btn-primary",
       children: "Zapisz"
@@ -3087,8 +3119,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _addUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./addUser */ "./resources/js/components/users/container/addUser.js");
 /* harmony import */ var _selectRole__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./selectRole */ "./resources/js/components/users/container/selectRole.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
-
 
 
 
@@ -3386,13 +3416,13 @@ var changeUserRole = /*#__PURE__*/function () {
     return _ref3.apply(this, arguments);
   };
 }();
-var storeUser = function storeUser(props, data, e) {
+var storeUser = function storeUser(addUserToStore, data, e) {
   _config_axios__WEBPACK_IMPORTED_MODULE_1__.default.post('api/users/store-user', {
     name: data.name,
     email: data.email,
     password: data.password
   }).then(function (res) {
-    props.add(res.data);
+    addUserToStore(res.data);
     (0,_include_toast__WEBPACK_IMPORTED_MODULE_4__.default)('success', 'User został dodany poprawnie');
     e.target.reset();
   })["catch"](function (error) {

@@ -3,8 +3,6 @@ import { connect } from "react-redux"
 import { getAllUsers } from '../operations'
 import AddUser from './addUser'
 import SelectRole from './selectRole';
-import { changeUserRole } from '../operations'
-import { toast } from 'react-toastify'
 
 const UsersContainer = ({ users, getAllUsers }) => {
     useEffect(() => {getAllUsers()}, [])
