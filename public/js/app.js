@@ -2577,9 +2577,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions */ "./resources/js/components/tasks/actions.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _config_axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../config/axios */ "./resources/js/config/axios.js");
-/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
 /* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../operations */ "./resources/js/components/tasks/operations.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
@@ -2592,38 +2592,24 @@ __webpack_require__.r(__webpack_exports__);
 var addTask = function addTask(props) {
   var taskInput = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createRef();
 
-  var storeTask = function storeTask(event) {
+  var submitAddTaskForm = function submitAddTaskForm(event) {
     event.preventDefault();
-
-    try {
-      _config_axios__WEBPACK_IMPORTED_MODULE_3__.default.post('api/taks/store-task', {
-        name: taskInput.current.value
-      }).then(function (res) {
-        props.add(res.data);
-        react_toastify__WEBPACK_IMPORTED_MODULE_6__.toast.success('Task został dodany prawiodłowo', {
-          position: "bottom-left",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined
-        });
-        taskInput.current.value = '';
-      });
-    } catch (err) {
-      console.log(err);
-    }
+    (0,_operations__WEBPACK_IMPORTED_MODULE_5__.storeTask)(props.add, taskInput);
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
-    onSubmit: storeTask,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
-      ref: taskInput
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
-      type: "submit",
-      children: "Dodaj task"
-    })]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    className: "form-group",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
+      onSubmit: submitAddTaskForm,
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
+        className: "form-control",
+        ref: taskInput
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+        className: "btn btn-primary",
+        type: "submit",
+        children: "Dodaj task"
+      })]
+    })
   });
 };
 
@@ -2791,18 +2777,21 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "toggleCompleted": () => (/* binding */ toggleCompleted),
-/* harmony export */   "getAllTasks": () => (/* binding */ getAllTasks)
+/* harmony export */   "getAllTasks": () => (/* binding */ getAllTasks),
+/* harmony export */   "storeTask": () => (/* binding */ storeTask)
 /* harmony export */ });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./resources/js/components/tasks/actions.js");
 /* harmony import */ var _config_axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../config/axios */ "./resources/js/config/axios.js");
 /* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../history */ "./resources/js/components/history.js");
+/* harmony import */ var _include_toast__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../include/toast */ "./resources/js/components/include/toast.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -2880,6 +2869,19 @@ var getAllTasks = function getAllTasks() {
       return _ref2.apply(this, arguments);
     };
   }();
+};
+var storeTask = function storeTask(addTaskToStore, taskInput) {
+  try {
+    _config_axios__WEBPACK_IMPORTED_MODULE_2__.default.post('api/taks/store-task', {
+      name: taskInput.current.value
+    }).then(function (res) {
+      addTaskToStore(res.data);
+      (0,_include_toast__WEBPACK_IMPORTED_MODULE_4__.default)('success', 'Task został dodany poprawnie');
+      taskInput.current.value = '';
+    });
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 /***/ }),
