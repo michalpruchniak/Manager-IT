@@ -13,6 +13,7 @@ import {
     Route,
     Redirect
 } from "react-router-dom";
+import Nav from './include/nav';
 
 
 const Manager = ({ getUser, user }) => {
@@ -24,9 +25,10 @@ const Manager = ({ getUser, user }) => {
             <div className="row justify-content-center">
                 <div className="col-md-8">
                     <div className="card">
-                        <div className="card-header">Example Component</div>
+                        <div className="card-header">Manager IT</div>
                         <div className="card-body">
                             <Router history={history}>
+                                <Nav />
                                 <Switch>
                                     <Route path="/login">
                                         <Login />
