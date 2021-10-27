@@ -16,7 +16,7 @@ import {
 import Nav from './include/nav';
 
 
-const Manager = ({ getUser, user }) => {
+const Manager = ({ getUser }) => {
     useEffect(() => {
         getUser();
     });

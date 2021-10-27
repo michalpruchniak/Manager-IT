@@ -1,7 +1,6 @@
 import React from 'react'
 import actions from '../actions';
 import { connect } from 'react-redux'
-import axiosConfig from '../../../config/axios';
 
 import 'react-toastify/dist/ReactToastify.css'
 import { storeTask } from '../operations';
