@@ -9,7 +9,6 @@ import { getAllTasks, markAsCompleted } from '../operations';
 const TasksContainer = ({
         tasks,
         getAllTasks,
-        toggleMarksAsCompleted,
         markAsCompleted,
         showAllTasks,
         showCompletedTasks,

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TasksController extends Controller
 {
+
     public function showAllTasks(){
         $tasks = Tasks::all();
         return json_encode($tasks);

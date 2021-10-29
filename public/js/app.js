@@ -2727,7 +2727,6 @@ __webpack_require__.r(__webpack_exports__);
 var TasksContainer = function TasksContainer(_ref) {
   var tasks = _ref.tasks,
       getAllTasks = _ref.getAllTasks,
-      toggleMarksAsCompleted = _ref.toggleMarksAsCompleted,
       markAsCompleted = _ref.markAsCompleted,
       showAllTasks = _ref.showAllTasks,
       showCompletedTasks = _ref.showCompletedTasks,
@@ -2913,9 +2912,17 @@ var storeTask = function storeTask(addTaskToStore, taskInput) {
       addTaskToStore(res.data);
       (0,_include_toast__WEBPACK_IMPORTED_MODULE_4__.default)('success', 'Task został dodany poprawnie');
       taskInput.current.value = '';
+    })["catch"](function (err) {
+      console.log('Hello World');
+
+      if (err.response) {
+        console.log(err.response.status);
+        console.log(err.response.data);
+      }
     });
   } catch (err) {
-    (0,_include_toast__WEBPACK_IMPORTED_MODULE_4__.default)('error', err);
+    console.log('Test');
+    (0,_include_toast__WEBPACK_IMPORTED_MODULE_4__.default)('error', 'Error');
   }
 };
 var markAsCompleted = function markAsCompleted(id) {
@@ -3313,8 +3320,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../operations */ "./resources/js/components/users/operations.js");
-/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.esm.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _include_toast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../include/toast */ "./resources/js/components/include/toast.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
@@ -3326,43 +3334,27 @@ var SelectRole = function SelectRole(_ref) {
   var selectChange = function selectChange(role, id) {
     try {
       (0,_operations__WEBPACK_IMPORTED_MODULE_0__.changeUserRole)(role, id);
-      react_toastify__WEBPACK_IMPORTED_MODULE_2__.toast.success('Rola została zmieniona prawidłowo', {
-        position: "bottom-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      });
+      (0,_include_toast__WEBPACK_IMPORTED_MODULE_1__.default)('success', 'Rola została zmieniona prawidłowo');
     } catch (err) {
-      react_toastify__WEBPACK_IMPORTED_MODULE_2__.toast.error(err, {
-        position: "bottom-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined
-      });
+      (0,_include_toast__WEBPACK_IMPORTED_MODULE_1__.default)('error', err);
     }
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
     className: "form-group",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("form", {
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("form", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
         onChange: function onChange(e) {
           return selectChange(e.target.value, user.id);
         },
         defaultValue: user.role,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
           value: "1",
           children: "U\u017Cytkownik"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
           value: "2",
           children: "Moderator"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
           value: "3",
           children: "Admin"
         })]
@@ -3534,11 +3526,7 @@ var storeUser = function storeUser(addUserToStore, data, e) {
     (0,_include_toast__WEBPACK_IMPORTED_MODULE_4__.default)('success', 'User został dodany poprawnie');
     e.target.reset();
   })["catch"](function (error) {
-    if (error.response.data.errors) {
-      for (var klucz in error.response.data.errors) {
-        (0,_include_toast__WEBPACK_IMPORTED_MODULE_4__.default)('error', "".concat(error.response.data.errors[klucz]));
-      }
-    }
+    (0,_include_toast__WEBPACK_IMPORTED_MODULE_4__.default)('error', error.response.data.message);
   });
 };
 

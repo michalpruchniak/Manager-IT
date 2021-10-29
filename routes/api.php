@@ -30,7 +30,8 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::get('/taks/toggle-completed-task/{id}', [TasksController::class, 'toggleCompletedTask']);
     Route::post('/users/store-user', [AdminController::class, 'storeUser']);
     Route::get('/users/all-users', [UsersController::class, 'showAllUsers']);
-    Route::get('/users/admin/change-role/{role}/{userid}', [UsersController::class, 'changeRole']);
+    Route::get('/users/admin/change-role/{role}/{userid}', [AdminController::class, 'changeRole']);
+
 
      Route::get('/userdetails', function (Request $request) {
         return $request->cookie('user');

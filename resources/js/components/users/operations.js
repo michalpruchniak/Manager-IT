@@ -56,10 +56,6 @@ export const storeUser = (addUserToStore, data, e) => {
         e.target.reset();
 
     }).catch((error) => {
-        if (error.response.data.errors) {
-            for (let klucz in error.response.data.errors) {
-                displayToast('error', `${error.response.data.errors[klucz]}`);
-            }
-        }
+        displayToast('error', error.response.data.message);
     });
 }

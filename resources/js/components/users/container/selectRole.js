@@ -1,30 +1,15 @@
 import { changeUserRole } from '../operations'
 import { toast } from 'react-toastify'
+import displayToat from '../../include/toast'
 
 
 const SelectRole = ({user}) => {
     const selectChange = (role, id) => {
         try {
             changeUserRole(role, id);
-            toast.success('Rola została zmieniona prawidłowo', {
-                position: "bottom-left",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            displayToat('success', 'Rola została zmieniona prawidłowo');
         } catch (err) {
-            toast.error(err, {
-                position: "bottom-left",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
+            displayToat('error', err);
         }
     }
     return(

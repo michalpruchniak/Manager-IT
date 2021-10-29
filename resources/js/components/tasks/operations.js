@@ -41,9 +41,18 @@ export const storeTask = (addTaskToStore, taskInput) => {
             addTaskToStore(res.data);
             displayToast('success', 'Task został dodany poprawnie');
             taskInput.current.value = '';
+        }).catch((err) => {
+            console.log('Hello World');
+
+            if (err.response) {
+                console.log(err.response.status)
+                console.log(err.response.data)
+            }
+
         })
     } catch (err) {
-            displayToast('error', err);
+        console.log('Test');
+            displayToast('error', 'Error');
 
     }
 }
