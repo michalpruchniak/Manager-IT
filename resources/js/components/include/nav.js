@@ -9,11 +9,23 @@ const Nav = ({ user }) => {
         userid = null;
     }
     return(
-        <ul>
-            {userid === null ?< li><Link to="login">Zaloguj</Link></li> : '' }
-            <li><Link to="all-tasks">Wszystkie taski</Link></li>
-            <li><Link to="all-users">Wszyscy userzy</Link></li>
-        </ul>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span className="navbar-toggler-icon"></span>
+  </button>
+
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul className="navbar-nav mr-auto">
+    {userid === null ?
+     <li className="nav-item">
+        <Link className="nav-link" to="login">Zaloguj</Link>
+      </li>
+      : ''}
+      <Link className="nav-link" to="all-tasks">Wszystkie taski</Link>
+      <Link className="nav-link" to="all-users">Wszyscy userzy</Link>
+    </ul>
+  </div>
+</nav>
     );
 }
 
