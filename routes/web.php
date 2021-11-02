@@ -16,13 +16,4 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('hom');
-// });
-Route::middleware('auth')->get('/ble', [TasksController::class, 'showAllTasks']);
-Route::get('/token', [TasksController::class, 'getToken']);
-
-Auth::routes();
-
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::middleware('auth')->get('/hello', [App\Http\Controllers\ApiTokenController::class, 'update'])->name('home');
