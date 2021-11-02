@@ -2467,13 +2467,6 @@ __webpack_require__.r(__webpack_exports__);
 var Nav = function Nav(_ref) {
   var user = _ref.user;
   var userid = null;
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    try {
-      userid = user.user.id;
-    } catch (err) {
-      console.log(err);
-    }
-  });
 
   try {
     userid = user.user.id;

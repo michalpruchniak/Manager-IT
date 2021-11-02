@@ -3,15 +3,6 @@ import { connect } from 'react-redux';
 import React, { useEffect } from "react";
 const Nav = ({ user }) => {
     let userid = null;
-
-    useEffect(() => {
-        try {
-            userid = user.user.id;
-        } catch(err) {
-            console.log(err);
-        }
-
-    });
     try {
         userid = user.user.id;
     } catch(err) {
