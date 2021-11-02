@@ -5,7 +5,14 @@ import AddUser from './addUser'
 import SelectRole from './selectRole';
 
 const UsersContainer = ({ users, getAllUsers }) => {
-    useEffect(() => {getAllUsers()}, [])
+
+    try {
+        if (users.list.length < 1) {
+            getAllUsers();
+        }
+    } catch (err) {
+        history.pushState
+    }
 
 
     return (

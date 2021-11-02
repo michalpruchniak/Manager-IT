@@ -15,13 +15,14 @@ const TasksContainer = ({
         showUncompletedTasks,
         user
     }) => {
-    useEffect(() => { 
-        try {
+
+    try {
+        if(tasks.list.length < 1) {
             getAllTasks();
-        } catch(err){
-            history.pushState
         }
-     }, [])
+    } catch(err) {
+        history.pushState
+    }
 
     return( 
     <React.Fragment>

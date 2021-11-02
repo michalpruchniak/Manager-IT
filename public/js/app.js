@@ -2760,13 +2760,15 @@ var TasksContainer = function TasksContainer(_ref) {
       showCompletedTasks = _ref.showCompletedTasks,
       showUncompletedTasks = _ref.showUncompletedTasks,
       user = _ref.user;
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    try {
+
+  try {
+    if (tasks.list.length < 1) {
       getAllTasks();
-    } catch (err) {
-      history.pushState;
     }
-  }, []);
+  } catch (err) {
+    history.pushState;
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
       onClick: showUncompletedTasks,
@@ -3273,9 +3275,15 @@ __webpack_require__.r(__webpack_exports__);
 var UsersContainer = function UsersContainer(_ref) {
   var users = _ref.users,
       getAllUsers = _ref.getAllUsers;
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    getAllUsers();
-  }, []);
+
+  try {
+    if (users.list.length < 1) {
+      getAllUsers();
+    }
+  } catch (err) {
+    history.pushState;
+  }
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("table", {
       className: "table",
