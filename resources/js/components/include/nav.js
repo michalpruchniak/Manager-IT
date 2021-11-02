@@ -10,7 +10,7 @@ const Nav = ({ user }) => {
     }
     return(
         <ul>
-            {userid !== null ?< li><Link to="login">Zaloguj</Link></li> : '' }
+            {userid === null ?< li><Link to="login">Zaloguj</Link></li> : '' }
             <li><Link to="all-tasks">Wszystkie taski</Link></li>
             <li><Link to="all-users">Wszyscy userzy</Link></li>
         </ul>
