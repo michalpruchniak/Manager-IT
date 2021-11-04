@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from "react-redux"
 import { getAllUsers } from '../operations'
 import AddUser from './addUser'
-import SelectRole from './selectRole';
+import SingleUser from './sngleUser'
 
 const UsersContainer = ({ users, getAllUsers }) => {
 
@@ -28,15 +28,7 @@ const UsersContainer = ({ users, getAllUsers }) => {
             </thead>
             <tbody>
                 {users.list.map(user => 
-                    <tr key={user.id}>
-                        <th scope="row">{user.id}</th>
-                        <td>{user.name}</td>
-                        <td>{user.email} </td>
-                        <td>
-                            <SelectRole user={user} />
-
-                        </td>
-                    </tr>
+                    <SingleUser user={user} key={user.id}/>
                 )}
             </tbody>
         </table>

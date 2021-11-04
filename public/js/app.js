@@ -3356,7 +3356,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../operations */ "./resources/js/components/users/operations.js");
 /* harmony import */ var _addUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./addUser */ "./resources/js/components/users/container/addUser.js");
-/* harmony import */ var _selectRole__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./selectRole */ "./resources/js/components/users/container/selectRole.js");
+/* harmony import */ var _sngleUser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sngleUser */ "./resources/js/components/users/container/sngleUser.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -3400,19 +3400,8 @@ var UsersContainer = function UsersContainer(_ref) {
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("tbody", {
         children: users.list.map(function (user) {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("th", {
-              scope: "row",
-              children: user.id
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-              children: user.name
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("td", {
-              children: [user.email, " "]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("td", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_selectRole__WEBPACK_IMPORTED_MODULE_4__.default, {
-                user: user
-              })
-            })]
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_sngleUser__WEBPACK_IMPORTED_MODULE_4__.default, {
+            user: user
           }, user.id);
         })
       })]
@@ -3494,6 +3483,45 @@ var SelectRole = function SelectRole(_ref) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SelectRole);
+
+/***/ }),
+
+/***/ "./resources/js/components/users/container/sngleUser.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/components/users/container/sngleUser.js ***!
+  \**************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _selectRole__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./selectRole */ "./resources/js/components/users/container/selectRole.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+var SingleUser = function SingleUser(_ref) {
+  var user = _ref.user;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
+      scope: "row",
+      children: user.id
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+      children: user.name
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("td", {
+      children: [user.email, " "]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("td", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_selectRole__WEBPACK_IMPORTED_MODULE_0__.default, {
+        user: user
+      })
+    })]
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SingleUser);
 
 /***/ }),
 

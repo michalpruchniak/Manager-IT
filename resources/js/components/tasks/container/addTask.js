@@ -7,7 +7,7 @@ import { storeTask } from '../operations';
 
 const addTask =  (props) => {
     const taskInput = React.createRef();
-    const submitAddTaskForm= (event) => {
+    const submitAddTaskForm = (event) => {
         event.preventDefault();
         storeTask(props.add, taskInput);
 
