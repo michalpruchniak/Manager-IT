@@ -2086,9 +2086,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_default__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../components/default */ "./resources/js/components/default.js");
 /* harmony import */ var _include_messages__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../include/messages */ "./resources/js/components/include/messages.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actions */ "./resources/js/components/auth/actions.js");
-/* harmony import */ var _history__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../history */ "./resources/js/components/history.js");
-/* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../operations */ "./resources/js/components/auth/operations.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../operations */ "./resources/js/components/auth/operations.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2119,10 +2118,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-var Register = function Register(props) {
+var Login = function Login(_ref) {
+  var setUser = _ref.setUser;
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    (0,_operations__WEBPACK_IMPORTED_MODULE_8__.rediredLoggedUser)();
+    (0,_operations__WEBPACK_IMPORTED_MODULE_7__.rediredLoggedUser)();
   }, []);
 
   var _useForm = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_3__.useForm)(),
@@ -2135,11 +2134,11 @@ var Register = function Register(props) {
       logged = _useState2[0],
       setLogged = _useState2[1];
 
-  var onSubmit = function onSubmit(data) {
+  var handleLogin = function handleLogin(data) {
     axios__WEBPACK_IMPORTED_MODULE_0___default().get(_components_default__WEBPACK_IMPORTED_MODULE_4__.url + "/sanctum/csrf-cookie").then(function () {
       axios__WEBPACK_IMPORTED_MODULE_0___default().post(_components_default__WEBPACK_IMPORTED_MODULE_4__.url + '/api/login', data).then(function (res) {
         if (res.data.jwt) {
-          props.setUser({
+          setUser({
             id: res.data.user.id,
             name: res.data.user.name
           });
@@ -2155,21 +2154,21 @@ var Register = function Register(props) {
     });
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
     className: "container",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("h2", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h2", {
       children: "Zaloguj si\u0119"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
       message: "Podany u\u017Cytkownik nie istnieje, albo has\u0142o jest nieprawid\u0142owe",
       display: logged
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("form", {
-      onSubmit: handleSubmit(onSubmit),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("form", {
+      onSubmit: handleSubmit(handleLogin),
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "form-group",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
           htmlFor: "email",
           children: "Email"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", _objectSpread(_defineProperty({
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", _objectSpread(_defineProperty({
           type: "email",
           id: "email",
           className: "form-control",
@@ -2177,17 +2176,17 @@ var Register = function Register(props) {
         }, "placeholder", "example@example.com"), register("email", {
           required: true,
           pattern: /^\S+@\S+$/i
-        }))), errors.email && errors.email.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }))), errors.email && errors.email.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
           message: "Pole email jest wymagane"
-        }), errors.email && errors.email.type === "pattern" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }), errors.email && errors.email.type === "pattern" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
           message: "To nie jest prawid\u0142owy format adresu email"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
         className: "form-group",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("label", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("label", {
           htmlFor: "password",
           children: "Has\u0142o"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("input", _objectSpread({
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("input", _objectSpread({
           id: "password",
           type: "password",
           className: "form-control"
@@ -2195,14 +2194,14 @@ var Register = function Register(props) {
           required: true,
           minLength: 8,
           maxLength: 45
-        }))), errors.password && errors.password.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }))), errors.password && errors.password.type === "required" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
           message: "Pole has\u0142o jest wymagane"
-        }), errors.password && errors.password.type === "minLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }), errors.password && errors.password.type === "minLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
           message: "Minimalna ilo\u015B\u0107 znak\xF3w wynosi 8"
-        }), errors.password && errors.password.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
+        }), errors.password && errors.password.type === "maxLength" && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_include_messages__WEBPACK_IMPORTED_MODULE_5__.default, {
           message: "Maksymalna ilo\u015B\u0107 znak\xF3w wynosi 45"
         })]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)("button", {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
         className: "btn btn-primary",
         role: "submit",
         children: "Zaloguj si\u0119"
@@ -2225,7 +2224,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, mapDispatchToProps)(Register));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, mapDispatchToProps)(Login));
 
 /***/ }),
 
@@ -2784,9 +2783,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions */ "./resources/js/components/tasks/actions.js");
-/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
-/* harmony import */ var _addTask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./addTask */ "./resources/js/components/tasks/container/addTask.js");
+/* harmony import */ var react_toastify_dist_ReactToastify_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-toastify/dist/ReactToastify.css */ "./node_modules/react-toastify/dist/ReactToastify.css");
+/* harmony import */ var _addTask__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./addTask */ "./resources/js/components/tasks/container/addTask.js");
+/* harmony import */ var _filterTasks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./filterTasks */ "./resources/js/components/tasks/container/filterTasks.js");
 /* harmony import */ var _operations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../operations */ "./resources/js/components/tasks/operations.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
@@ -2802,9 +2801,6 @@ var TasksContainer = function TasksContainer(_ref) {
   var tasks = _ref.tasks,
       getAllTasks = _ref.getAllTasks,
       markAsCompleted = _ref.markAsCompleted,
-      showAllTasks = _ref.showAllTasks,
-      showCompletedTasks = _ref.showCompletedTasks,
-      showUncompletedTasks = _ref.showUncompletedTasks,
       user = _ref.user;
 
   try {
@@ -2816,16 +2812,7 @@ var TasksContainer = function TasksContainer(_ref) {
   }
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-      onClick: showUncompletedTasks,
-      children: "Aktywne taski | "
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-      onClick: showCompletedTasks,
-      children: "Zako\u0144czone taski | "
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-      onClick: showAllTasks,
-      children: "Wszystkie taski"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("ul", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_filterTasks__WEBPACK_IMPORTED_MODULE_4__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("ul", {
       className: "tasks",
       children: tasks.filtered.map(function (task) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("li", {
@@ -2840,7 +2827,7 @@ var TasksContainer = function TasksContainer(_ref) {
           })]
         }, task.id);
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_addTask__WEBPACK_IMPORTED_MODULE_4__.default, {})]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_addTask__WEBPACK_IMPORTED_MODULE_3__.default, {})]
   });
 };
 
@@ -2856,15 +2843,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     getAllTasks: function getAllTasks() {
       return dispatch((0,_operations__WEBPACK_IMPORTED_MODULE_5__.getAllTasks)());
     },
-    showAllTasks: function showAllTasks() {
-      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_2__.default.showAllTasks());
-    },
-    showCompletedTasks: function showCompletedTasks() {
-      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_2__.default.showCompletedTasks());
-    },
-    showUncompletedTasks: function showUncompletedTasks() {
-      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_2__.default.showUncompletedTasks());
-    },
     markAsCompleted: function markAsCompleted(id) {
       return dispatch((0,_operations__WEBPACK_IMPORTED_MODULE_5__.markAsCompleted)(id));
     }
@@ -2872,6 +2850,76 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapStateToProps, mapDispatchToProps)(TasksContainer));
+
+/***/ }),
+
+/***/ "./resources/js/components/tasks/container/filterTasks.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/tasks/container/filterTasks.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions */ "./resources/js/components/tasks/actions.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+var FilterTasks = function FilterTasks(_ref) {
+  var showAllTasks = _ref.showAllTasks,
+      showCompletedTasks = _ref.showCompletedTasks,
+      showUncompletedTasks = _ref.showUncompletedTasks;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      onClick: showUncompletedTasks,
+      children: "Aktywne taski | "
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      onClick: showCompletedTasks,
+      children: "Zako\u0144czone taski | "
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      onClick: showAllTasks,
+      children: "Wszystkie taski"
+    })]
+  });
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    showAllTasks: function showAllTasks() {
+      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_1__.default.showAllTasks());
+    },
+    showCompletedTasks: function showCompletedTasks() {
+      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_1__.default.showCompletedTasks());
+    },
+    showUncompletedTasks: function showUncompletedTasks() {
+      return dispatch(_actions__WEBPACK_IMPORTED_MODULE_1__.default.showUncompletedTasks());
+    },
+    markAsCompleted: function (_markAsCompleted) {
+      function markAsCompleted(_x) {
+        return _markAsCompleted.apply(this, arguments);
+      }
+
+      markAsCompleted.toString = function () {
+        return _markAsCompleted.toString();
+      };
+
+      return markAsCompleted;
+    }(function (id) {
+      return dispatch(markAsCompleted(id));
+    })
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(null, mapDispatchToProps)(FilterTasks));
 
 /***/ }),
 

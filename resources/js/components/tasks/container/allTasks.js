@@ -1,18 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux';
-import actions from '../actions';
 import 'react-toastify/dist/ReactToastify.css'
 import AddTask from './addTask';
-
+import FilterTasks from './filterTasks';
 import { getAllTasks, markAsCompleted } from '../operations';
 
 const TasksContainer = ({
         tasks,
         getAllTasks,
         markAsCompleted,
-        showAllTasks,
-        showCompletedTasks,
-        showUncompletedTasks,
         user
     }) => {
     try {
@@ -25,9 +21,7 @@ const TasksContainer = ({
 
     return( 
     <React.Fragment>
-    <span onClick={showUncompletedTasks}>Aktywne taski | </span>
-    <span onClick={showCompletedTasks}>Zakończone taski | </span>
-    <span onClick={showAllTasks}>Wszystkie taski</span>
+    <FilterTasks />
     <ul className="tasks">
         {tasks.filtered.map(task =>
             <li key={task.id} className={!task.completed ? 'activeTask' : 'completeTask'}
@@ -45,9 +39,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     getAllTasks: () => dispatch(getAllTasks()),
-    showAllTasks: () => dispatch(actions.showAllTasks()),
-    showCompletedTasks: () => dispatch(actions.showCompletedTasks()),
-    showUncompletedTasks: () => dispatch(actions.showUncompletedTasks()),
     markAsCompleted: (id) => dispatch(markAsCompleted(id))
 
 })

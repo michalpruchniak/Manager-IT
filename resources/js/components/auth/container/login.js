@@ -7,10 +7,9 @@ import { useForm } from 'react-hook-form'
 import { url } from '../../../components/default'
 import Message from '../../include/messages'
 import actions from '../actions'
-import { history } from '../../history';
 import { rediredLoggedUser } from '../operations';
 
-const Register = (props) => {
+const Login = ({ setUser }) => {
    useEffect(() => {
        rediredLoggedUser();
    },[])
@@ -18,12 +17,12 @@ const Register = (props) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [logged, setLogged] = useState("none");
 
-    const onSubmit = data => {
+    const handleLogin = data => {
         axios.get(url + "/sanctum/csrf-cookie").then(() => {
             axios.post(url + '/api/login', data)
                 .then(res => {
                     if (res.data.jwt) {
-                        props.setUser({
+                        setUser({
                             id: res.data.user.id,
                             name: res.data.user.name
                         });
@@ -47,7 +46,7 @@ const Register = (props) => {
         <div className="container">
             <h2>Zaloguj się</h2>
             <Message message="Podany użytkownik nie istnieje, albo hasło jest nieprawidłowe" display={logged} />
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(handleLogin)}>
                 <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input
@@ -87,4 +86,4 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     setUser: user => dispatch(actions.setUser(user))
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
