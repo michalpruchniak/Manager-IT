@@ -16,7 +16,7 @@ export const getAllUsers = () =>
             const users = await fetchUsers()
             users.map(user => dispatch(actions.addUser(user)));
         } catch(err) {
-            history.push('/home/#/login');
+            history.push('/login');
 
         }
         

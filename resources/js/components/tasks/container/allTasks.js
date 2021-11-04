@@ -15,7 +15,6 @@ const TasksContainer = ({
         showUncompletedTasks,
         user
     }) => {
-
     try {
         if(tasks.list.length < 1) {
             getAllTasks();

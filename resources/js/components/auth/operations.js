@@ -20,3 +20,9 @@ export const getUser = () => async (dispatch) => {
         history.push('/login');
     }
 }
+export const rediredLoggedUser = async () => {
+        const user = await fetchUser();
+        if(user){
+            history.push('/all-tasks')
+        } 
+    } 

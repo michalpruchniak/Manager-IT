@@ -7,10 +7,17 @@ import { useForm } from 'react-hook-form'
 import { url } from '../../../components/default'
 import Message from '../../include/messages'
 import actions from '../actions'
+import { history } from '../../history';
+import { rediredLoggedUser } from '../operations';
 
 const Register = (props) => {
+   useEffect(() => {
+       rediredLoggedUser();
+   },[])
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [logged, setLogged] = useState("none");
+
     const onSubmit = data => {
         axios.get(url + "/sanctum/csrf-cookie").then(() => {
             axios.post(url + '/api/login', data)
@@ -22,6 +29,8 @@ const Register = (props) => {
                         });
                         window.location.href = '#/all-tasks';
 
+                    } else {
+                        setLogged("block");
                     }
 
                 })
@@ -31,7 +40,9 @@ const Register = (props) => {
                     }
                 })
         })
+
     }
+
     return (
         <div className="container">
             <h2>Zaloguj się</h2>
@@ -70,7 +81,10 @@ const Register = (props) => {
         </div>
     );
 }
+const mapStateToProps = state => ({
+    user: state.user
+})
 const mapDispatchToProps = dispatch => ({
     setUser: user => dispatch(actions.setUser(user))
-})
-export default connect(null, mapDispatchToProps)(Register);
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
