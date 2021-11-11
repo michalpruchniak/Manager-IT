@@ -28,21 +28,21 @@ function tasks(state = initialTasks, action) {
                         : todo
                 )
             }
-            case types.show_all_task:
-                return {
-                    ...state,
-                    filtered: state.list.map(todo => todo)
-                }
-            case types.show_completed_task:
-                return {
-                    ...state,
-                    filtered: state.list.filter(todo => todo.completed === 1 || todo.completed === true)
-                }
-            case types.show_uncompleted_task:
-                return {
-                    ...state,
-                    filtered: state.list.filter(todo => todo.completed === 0 || todo.completed === false)
-                }
+        case types.show_all_task:
+            return {
+                ...state,
+                filtered: state.list.map(todo => todo)
+            }
+        case types.show_completed_task:
+            return {
+                ...state,
+                filtered: state.list.filter(todo => todo.completed === 1 || todo.completed === true)
+            }
+        case types.show_uncompleted_task:
+            return {
+                ...state,
+                filtered: state.list.filter(todo => todo.completed === 0 || todo.completed === false)
+            }
         default:
             return state
     } 

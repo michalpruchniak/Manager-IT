@@ -7,13 +7,12 @@ import { useForm } from 'react-hook-form'
 import { url } from '../../../components/default'
 import Message from '../../include/messages'
 import actions from '../actions'
-import { rediredLoggedUser } from '../operations';
+import { rediredLoggedUser, handleLogin} from '../operations';
 
 const Login = ({ setUser }) => {
-   useEffect(() => {
-       rediredLoggedUser();
-   },[])
-
+    useEffect(() => {
+        rediredLoggedUser();
+    }, [])
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [logged, setLogged] = useState("none");
 
@@ -26,14 +25,17 @@ const Login = ({ setUser }) => {
                             id: res.data.user.id,
                             name: res.data.user.name
                         });
+
                         window.location.href = '#/all-tasks';
 
                     } else {
+                        console.log('test');
+
                         setLogged("block");
                     }
 
                 })
-                .catch(error => {
+                .catch(error => {      
                     if (error.response.status == 401) {
                         setLogged("block");
                     }
@@ -44,7 +46,7 @@ const Login = ({ setUser }) => {
 
     return (
         <div className="container">
-            <h2>Zaloguj się</h2>
+            <h2>Login</h2>
             <Message message="Podany użytkownik nie istnieje, albo hasło jest nieprawidłowe" display={logged} />
             <form onSubmit={handleSubmit(handleLogin)}>
                 <div className="form-group">
@@ -72,10 +74,10 @@ const Login = ({ setUser }) => {
                     {errors.password && errors.password.type === "minLength" && <Message message="Minimalna ilość znaków wynosi 8" />}
                     {errors.password && errors.password.type === "maxLength" && <Message message="Maksymalna ilość znaków wynosi 45" />}
                 </div>
-                    <button 
+                <button
                     className="btn btn-primary"
                     role="submit"
-                    >Zaloguj się</button>
+                >Zaloguj się</button>
             </form>
         </div>
     );

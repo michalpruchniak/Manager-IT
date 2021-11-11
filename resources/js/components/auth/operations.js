@@ -1,6 +1,8 @@
+import axios from 'axios'
 import axiosConfig from "../../config/axios";
 import actions from "./actions";
 import { history } from "../history";
+import { url } from '../../components/default'
 
 
 const fetchUser = async () => {
@@ -20,6 +22,8 @@ export const getUser = () => async (dispatch) => {
         history.push('/login');
     }
 }
+
+
 export const rediredLoggedUser = async () => {
         const user = await fetchUser();
         if(user){
